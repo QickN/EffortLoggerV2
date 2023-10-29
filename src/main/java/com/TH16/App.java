@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -169,6 +171,17 @@ public class App extends Application {
         Tab tab6 = new Tab("LogManager");
         tab6.setContent(new Label("Content for Another Page"));
         tabPane.getTabs().add(tab6);
+        
+        Tab tab7 = new Tab("Show Reference Stories");
+        try {
+            FXMLLoader tab7_loader = new FXMLLoader(getClass().getResource("ReferenceStories.fxml"));
+            Pane content = tab7_loader.load();
+            tab7.setContent(content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //tab7.setContent(new Label("Content for Another Page"));
+        tabPane.getTabs().add(tab7);
 
         //Show scene on page
         Scene scene = new Scene(tabPane, 800, 600);
