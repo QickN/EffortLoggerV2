@@ -1,5 +1,9 @@
 package com.TH16;
 
+import java.time.LocalTime;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -28,6 +32,11 @@ import javafx.geometry.Side;
 
 public class App extends Application {
 
+    private Label clockStatus;
+    private Timeline timeline;
+    private LocalTime startTime;
+
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -36,21 +45,40 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(20, 20, 20, 20));
+        
     
         // Top content
         Label title = new Label("Effort Logger Console");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-        Label clockStatus = new Label("Clock is stopped");
+        clockStatus = new Label("Clock is stopped");
         clockStatus.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         clockStatus.setStyle("-fx-background-color: red; -fx-padding: 5px; -fx-text-fill: white;");
         VBox topBox = new VBox(10, title, clockStatus);
         topBox.setAlignment(Pos.CENTER);
         topBox.setSpacing(10);
         root.setTop(topBox);
+
+        
+
+
     
         // Center content
         Label instruction1 = new Label("1. When you start a new activity, press the \"Start an Activity\" button.");
         Button startActivityBtn = new Button("Start an Activity");
+
+        //Start Activity Button
+        startActivityBtn.setOnAction(event -> {
+            // Update label and start the timer
+            startTime = LocalTime.now();
+            if (timeline != null) {
+                timeline.stop();
+            }
+            timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(1), e -> updateTimer()));
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+            clockStatus.setStyle("-fx-background-color: green; -fx-padding: 5px; -fx-text-fill: white;");
+        });
+        
         Button defectLogConsoleBtn = new Button("Proceed to Defect Log Console");
         HBox buttonsHBox = new HBox(10, startActivityBtn, defectLogConsoleBtn); 
         buttonsHBox.setAlignment(Pos.CENTER); 
@@ -77,6 +105,16 @@ public class App extends Application {
     
         Label instruction3 = new Label("3. Press the \"Stop this Activity\" to generate an effort log entry using the attributes above.");
         Button stopActivityBtn = new Button("Stop this Activity");
+        stopActivityBtn.setOnAction(event -> {
+            if (timeline != null) {
+                timeline.stop();
+            }
+            clockStatus.setText("Clock is stopped");
+            clockStatus.setStyle("-fx-background-color: red; -fx-padding: 5px; -fx-text-fill: white;");
+            // reset startTime
+            startTime = null;
+        });
+        
         Button effortLogEditorBtn = new Button("Proceed to Effort Log Editor");
         
         VBox centerBottomBox = new VBox(10, instruction3, stopActivityBtn, effortLogEditorBtn);
@@ -134,5 +172,19 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+
+    private void updateTimer() {
+        if (startTime != null) {
+            java.time.Duration duration = java.time.Duration.between(startTime, LocalTime.now());
+            long hours = duration.toHours();
+            long minutes = duration.minusHours(hours).toMinutes();
+            long seconds = duration.minusHours(hours).minusMinutes(minutes).toMillis() / 1000;
+            clockStatus.setText(String.format("Clock is running | %02d:%02d:%02d", hours, minutes, seconds));
+        }
+    }
+    
+    
+    
     
 }
