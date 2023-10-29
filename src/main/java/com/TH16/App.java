@@ -58,10 +58,6 @@ public class App extends Application {
         topBox.setSpacing(10);
         root.setTop(topBox);
 
-        
-
-
-    
         // Center content
         Label instruction1 = new Label("1. When you start a new activity, press the \"Start an Activity\" button.");
         Button startActivityBtn = new Button("Start an Activity");
@@ -79,8 +75,8 @@ public class App extends Application {
             clockStatus.setStyle("-fx-background-color: green; -fx-padding: 5px; -fx-text-fill: white;");
         });
         
-        Button defectLogConsoleBtn = new Button("Proceed to Defect Log Console");
-        HBox buttonsHBox = new HBox(10, startActivityBtn, defectLogConsoleBtn); 
+
+        HBox buttonsHBox = new HBox(10, startActivityBtn); 
         buttonsHBox.setAlignment(Pos.CENTER); 
         VBox centerTopBox = new VBox(10, instruction1, buttonsHBox);
 
@@ -115,20 +111,28 @@ public class App extends Application {
             startTime = null;
         });
         
-        Button effortLogEditorBtn = new Button("Proceed to Effort Log Editor");
         
-        VBox centerBottomBox = new VBox(10, instruction3, stopActivityBtn, effortLogEditorBtn);
+        VBox centerBottomBox = new VBox(10, instruction3, stopActivityBtn);
     
         // Bottom content
         Label instruction4 = new Label("4. Unless you are done for the day, it is best to perform steps 1 and 2 above before resuming work.");
-        VBox bottomBox = new VBox(instruction4);
+        Button effortLogButton = new Button("Effort Log Editor");
+        Button defectLogButton = new Button("Defect Log Console");
+        Button DefinitionsButton = new Button("Definitions");
+        Button effortAndDefectLogsConsole = new Button("Effort and Defect Logs Console");
+        HBox bottomButtonsHBox = new HBox(10, effortLogButton, defectLogButton, DefinitionsButton, effortAndDefectLogsConsole);
+
+        VBox bottomBox = new VBox(instruction4, bottomButtonsHBox);
         bottomBox.setSpacing(10);
         root.setBottom(bottomBox);
 
-        VBox centerBox = new VBox(20, centerTopBox, instruction2, comboBoxVBox, centerBottomBox);
+        // This is your original centerBox with border:
+        VBox centerBox = new VBox(20, topBox, centerTopBox, instruction2, comboBoxVBox, centerBottomBox, bottomBox);
         centerBox.setSpacing(10);
-        centerBox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT))); // Add borders
+        centerBox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(5), new BorderWidths(2)))); // Add the first inner border
+        
         root.setCenter(centerBox);
+
     
     
         // Create tabs
