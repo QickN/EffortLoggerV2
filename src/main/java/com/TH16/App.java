@@ -1,6 +1,7 @@
 package com.TH16;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -38,6 +39,9 @@ public class App extends Application {
     private Label clockStatus;
     private Timeline timeline;
     private LocalTime startTime;
+    public String userStory;
+    public ArrayList<String> keywords;
+    public String name;
 
 
     public static void main(String[] args) {
@@ -140,12 +144,21 @@ public class App extends Application {
         Label userStoryName = new Label("Name of user: ");
         TextField storyNameInput = new TextField();
         Button submitUserStory = new Button("Submit");
+        submitUserStory.setOnAction(event -> {
+        	name = storyNameInput.getText();
+        });
         Label userStoryText = new Label("User story: ");
         TextField storyText = new TextField();
         Button submitStory = new Button("Submit");
+        submitStory.setOnAction(event -> {
+        	userStory = storyText.getText();
+        });
         Label keyWordsText = new Label("Key Words: ");
         TextField keyWordsInput = new TextField();
         Button submitKeyWords = new Button("Submit");
+        submitKeyWords.setOnAction(event -> {
+        	keywords.add(keyWordsInput.getText());
+        });
 
 
         HBox bottomButtonsHBox = new HBox(10, effortLogButton, defectLogButton, DefinitionsButton, effortAndDefectLogsConsole);
@@ -241,6 +254,8 @@ public class App extends Application {
         effortAndDefectLogsConsole.setOnAction(event -> {
             tabPane.getSelectionModel().select(tab4); 
         });
+        
+        
 
         //Show scene on page
         Scene scene = new Scene(tabPane, 800, 600);
