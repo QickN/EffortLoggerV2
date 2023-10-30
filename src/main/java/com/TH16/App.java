@@ -40,6 +40,7 @@ import javafx.geometry.Side;
 
 public class App extends Application {
 
+    // Add all the variables here
     private Label clockStatus;
     private Timeline timeline;
     private LocalTime startTime;
@@ -74,6 +75,7 @@ public class App extends Application {
         Button startActivityBtn = new Button("Start an Activity");
         instruction1.setFont(Font.font("System", FontWeight.BOLD, 15));
 
+        //Add center content to screen and format
         HBox instructionAndButtonHBox = new HBox(10, instruction1);
         instructionAndButtonHBox.setPadding(new Insets(0, 0, 10, 10)); // Add padding as needed
         instructionAndButtonHBox.setAlignment(Pos.CENTER_LEFT);
@@ -95,10 +97,11 @@ public class App extends Application {
         });
         
 
-        
+        //Added more vboxes to change the layout
         VBox centerTopBox = new VBox(10, instructionAndButtonHBox, instructionAndButtonHBox2);
-
         Label instruction2 = new Label("2. Select the project, life cycle step, effort category, and deliverable from the following lists:");
+
+        //Added some comboboxes for the middle of the screen
         ComboBox<String> projectCombo = new ComboBox<>();
         String[] projects = {"Business Project", "Development Project"};
         projectCombo.getItems().addAll(projects);
@@ -112,9 +115,12 @@ public class App extends Application {
         Label lifeCycleLabel = new Label("Life Cycle Step:");
         HBox lifeCycleHBox = new HBox(10, lifeCycleLabel, lifeCycleCombo);
 
+        //Adding more ComboBoxes for Effort Category
         ComboBox<String> effortCategoryCombo = new ComboBox<>();
         String[] EffortCategoryBox = {"Plans", "Deliverables", "Interuptions", "Defects", "Others"};
         effortCategoryCombo.getItems().addAll(EffortCategoryBox);
+
+        //Adding more ComboBoxes for Effort Category
         ComboBox<String> effortCategoryCombo2 = new ComboBox<>();
         String[] EffortCategoryBox2 = {"Project Plan", "Risk Management Plan", "Conceptual Design Plan", "Detailed Design Plan", "Implementation Plan"};
         effortCategoryCombo2.getItems().addAll(EffortCategoryBox2);
@@ -123,6 +129,7 @@ public class App extends Application {
 
         VBox comboBoxVBox = new VBox(10, projectHBox, lifeCycleHBox, effortCategoryHBox);
     
+        //Added reliability 
         Label instruction3 = new Label("3. Press the \"Stop this Activity\" to generate an effort log entry using the attributes above.");
         Button stopActivityBtn = new Button("Stop this Activity");
         stopActivityBtn.setOnAction(event -> {
@@ -246,6 +253,7 @@ public class App extends Application {
         tab6.setContent(new Label("Content for Another Page"));
         tabPane.getTabs().add(tab6);
         
+        //Reference Stories Tab
         Tab tab7 = new Tab("Show Reference Stories");
         try {
             FXMLLoader tab7_loader = new FXMLLoader(getClass().getResource("ReferenceStories.fxml"));
@@ -288,7 +296,7 @@ public class App extends Application {
         primaryStage.show();
     }
 
-
+    //Function for the timer in the effort logger
     private void updateTimer() {
         if (startTime != null) {
             java.time.Duration duration = java.time.Duration.between(startTime, LocalTime.now());
