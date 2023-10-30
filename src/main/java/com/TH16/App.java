@@ -143,6 +143,19 @@ public class App extends Application {
         Label planningPokerLabel = new Label("5. Planning Poker Input");
         Label userStoryName = new Label("Name of user: ");
         TextField storyNameInput = new TextField();
+        storyNameInput.setOnAction(event -> {
+        	try {
+                FXMLLoader input_loader = new FXMLLoader(getClass().getResource("InputValidation.fxml"));
+                Pane content = input_loader.load();
+                Stage newStage = new Stage();
+                newStage.setTitle("New Window");
+                Scene newScene = new Scene(content);
+                newStage.setScene(newScene);
+                newStage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         Button submitUserStory = new Button("Submit");
         submitUserStory.setOnAction(event -> {
         	name = storyNameInput.getText();
@@ -199,7 +212,14 @@ public class App extends Application {
 
         //Effort Log Editor Tab
         Tab tab2 = new Tab("EffortLogEditor");
-        tab2.setContent(new Label("Content for Another Page"));
+        try {
+            FXMLLoader tab2_loader = new FXMLLoader(getClass().getResource("EffortLogEditor.fxml"));
+            Pane content = tab2_loader.load();
+            tab2.setContent(content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //tab2.setContent(new Label("Content for Another Page"));
         tabPane.getTabs().add(tab2);
 
         //Defect Console Tab
