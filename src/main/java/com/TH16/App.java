@@ -144,6 +144,15 @@ public class App extends Application {
 
         //Effort Logger Tab
         Tab tab1 = new Tab("Effort Logger");
+        /*
+        try {
+            FXMLLoader tab1_loader = new FXMLLoader(getClass().getResource("EffortConsole.fxml"));
+            Pane content = tab1_loader.load();
+            tab1.setContent(content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        */
         tab1.setContent(root);
         tabPane.getTabs().add(tab1);
 
