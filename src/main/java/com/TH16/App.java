@@ -27,6 +27,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.geometry.Side;
 
 
@@ -135,16 +136,25 @@ public class App extends Application {
         Button defectLogButton = new Button("Defect Log Console");
         Button DefinitionsButton = new Button("Definitions");
         Button effortAndDefectLogsConsole = new Button("Effort and Defect Logs Console");
+        Label planningPokerLabel = new Label("5. Planning Poker Input");
+        Label userStoryName = new Label("Name of user: ");
+        TextField storyNameInput = new TextField();
+        Label userStoryText = new Label("User story: ");
+        TextField storyText = new TextField();
+        Label keyWordsText = new Label("Key Words: ");
+        TextField keyWordsInput = new TextField();
 
 
         HBox bottomButtonsHBox = new HBox(10, effortLogButton, defectLogButton, DefinitionsButton, effortAndDefectLogsConsole);
+        HBox bottomButtonsHBox2 = new HBox(10, userStoryName, storyNameInput, userStoryText, storyText);
+        HBox bottomButtonsHBox3 = new HBox(10, keyWordsText, keyWordsInput);
 
-        VBox bottomBox = new VBox(instruction4, bottomButtonsHBox);
+        VBox bottomBox = new VBox(instruction4, bottomButtonsHBox, planningPokerLabel, bottomButtonsHBox2);
         bottomBox.setSpacing(10);
         root.setBottom(bottomBox);
 
         // This is your original centerBox with border:
-        VBox centerBox = new VBox(20, topBox, centerTopBox, instruction2, comboBoxVBox, centerBottomBox, bottomBox);
+        VBox centerBox = new VBox(20, topBox, centerTopBox, instruction2, comboBoxVBox, centerBottomBox, bottomBox, bottomButtonsHBox3);
         centerBox.setSpacing(10);
         centerBox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(5), new BorderWidths(2)))); // Add the first inner border
         
@@ -206,6 +216,11 @@ public class App extends Application {
         }
         //tab7.setContent(new Label("Content for Another Page"));
         tabPane.getTabs().add(tab7);
+
+        //Planning Poker Tab
+        Tab tab8 = new Tab("Planning Poker");
+        tab8.setContent(new Label("Content for Another Page"));
+        tabPane.getTabs().add(tab8);
 
         //Change Between Scenes
         effortLogButton.setOnAction(event -> {
