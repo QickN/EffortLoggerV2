@@ -87,7 +87,7 @@ public class CSVScanner {
 	public ArrayList<ReferenceStory> getReferenceStoryList() {
     	return referenceStories;
     }
-//helper class to allow the foundation for all reference stories
+//h1elper class to allow the foundation for all reference stories
     public class ReferenceStory {
         private String name;
         private String description;

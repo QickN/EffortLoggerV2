@@ -183,11 +183,12 @@ public class App extends Application {
         submitKeyWords.setOnAction(event -> {
         	keywords.add(keyWordsInput.getText());
         });
-
+        Button validation = new Button("Validate Credentials");
+        
 
         HBox bottomButtonsHBox = new HBox(10, effortLogButton, defectLogButton, DefinitionsButton, effortAndDefectLogsConsole);
         HBox bottomButtonsHBox2 = new HBox(10, userStoryName, storyNameInput,submitUserStory, userStoryText, storyText, submitStory);
-        HBox bottomButtonsHBox3 = new HBox(10, keyWordsText, keyWordsInput, submitKeyWords);
+        HBox bottomButtonsHBox3 = new HBox(10, keyWordsText, keyWordsInput, submitKeyWords, validation);
 
         VBox bottomBox = new VBox(instruction4, bottomButtonsHBox, planningPokerLabel, bottomButtonsHBox2);
         bottomBox.setSpacing(10);
