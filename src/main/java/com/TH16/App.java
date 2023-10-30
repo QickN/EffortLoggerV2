@@ -63,6 +63,14 @@ public class App extends Application {
         // Center content
         Label instruction1 = new Label("1. When you start a new activity, press the \"Start an Activity\" button.");
         Button startActivityBtn = new Button("Start an Activity");
+        instruction1.setFont(Font.font("System", FontWeight.BOLD, 15));
+
+        HBox instructionAndButtonHBox = new HBox(10, instruction1);
+        instructionAndButtonHBox.setPadding(new Insets(0, 0, 10, 10)); // Add padding as needed
+        instructionAndButtonHBox.setAlignment(Pos.CENTER_LEFT);
+        HBox instructionAndButtonHBox2 = new HBox(10, startActivityBtn);
+        instructionAndButtonHBox2.setPadding(new Insets(0, 0, 10, 10)); // Add padding as needed
+        instructionAndButtonHBox2.setAlignment(Pos.CENTER_LEFT);
 
         //Start Activity Button
         startActivityBtn.setOnAction(event -> {
@@ -78,26 +86,31 @@ public class App extends Application {
         });
         
 
-        HBox buttonsHBox = new HBox(10, startActivityBtn); 
-        buttonsHBox.setAlignment(Pos.CENTER); 
-        VBox centerTopBox = new VBox(10, instruction1, buttonsHBox);
+        
+        VBox centerTopBox = new VBox(10, instructionAndButtonHBox, instructionAndButtonHBox2);
 
         Label instruction2 = new Label("2. Select the project, life cycle step, effort category, and deliverable from the following lists:");
         ComboBox<String> projectCombo = new ComboBox<>();
-        projectCombo.getItems().addAll("Business Project");
+        String[] projects = {"Business Project", "Development Project"};
+        projectCombo.getItems().addAll(projects);
         Label projectLabel = new Label("Project:");
         HBox projectHBox = new HBox(10, projectLabel, projectCombo);
         
         // Adding more ComboBoxes for Life Cycle Step, Effort Category, etc.
         ComboBox<String> lifeCycleCombo = new ComboBox<>();
-        lifeCycleCombo.getItems().addAll("Select Life Cycle Step...");
+        String[] lifeCycleStep = {"Planning", "Information Gathering", "Information Understanding", "Verifying", "Outlining", "Drafting", "Finalizing", "Team Meeting", "Coach Meeting", "Stakeholder Meeting"};
+        lifeCycleCombo.getItems().addAll(lifeCycleStep);
         Label lifeCycleLabel = new Label("Life Cycle Step:");
         HBox lifeCycleHBox = new HBox(10, lifeCycleLabel, lifeCycleCombo);
 
         ComboBox<String> effortCategoryCombo = new ComboBox<>();
-        effortCategoryCombo.getItems().addAll("Select Effort Category...");
+        String[] EffortCategoryBox = {"Plans", "Deliverables", "Interuptions", "Defects", "Others"};
+        effortCategoryCombo.getItems().addAll(EffortCategoryBox);
+        ComboBox<String> effortCategoryCombo2 = new ComboBox<>();
+        String[] EffortCategoryBox2 = {"Project Plan", "Risk Management Plan", "Conceptual Design Plan", "Detailed Design Plan", "Implementation Plan"};
+        effortCategoryCombo2.getItems().addAll(EffortCategoryBox2);
         Label effortCategoryLabel = new Label("Effort Category:");
-        HBox effortCategoryHBox = new HBox(10, effortCategoryLabel, effortCategoryCombo);
+        HBox effortCategoryHBox = new HBox(10, effortCategoryLabel, effortCategoryCombo, effortCategoryCombo2);
 
         VBox comboBoxVBox = new VBox(10, projectHBox, lifeCycleHBox, effortCategoryHBox);
     
@@ -122,6 +135,8 @@ public class App extends Application {
         Button defectLogButton = new Button("Defect Log Console");
         Button DefinitionsButton = new Button("Definitions");
         Button effortAndDefectLogsConsole = new Button("Effort and Defect Logs Console");
+
+
         HBox bottomButtonsHBox = new HBox(10, effortLogButton, defectLogButton, DefinitionsButton, effortAndDefectLogsConsole);
 
         VBox bottomBox = new VBox(instruction4, bottomButtonsHBox);
@@ -191,6 +206,23 @@ public class App extends Application {
         }
         //tab7.setContent(new Label("Content for Another Page"));
         tabPane.getTabs().add(tab7);
+
+        //Change Between Scenes
+        effortLogButton.setOnAction(event -> {
+            tabPane.getSelectionModel().select(tab2); 
+        });
+        
+        defectLogButton.setOnAction(event -> {
+            tabPane.getSelectionModel().select(tab3); 
+        });
+        
+        DefinitionsButton.setOnAction(event -> {
+            tabPane.getSelectionModel().select(tab5);
+        });
+        
+        effortAndDefectLogsConsole.setOnAction(event -> {
+            tabPane.getSelectionModel().select(tab4); 
+        });
 
         //Show scene on page
         Scene scene = new Scene(tabPane, 800, 600);
