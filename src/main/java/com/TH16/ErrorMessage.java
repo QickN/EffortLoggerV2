@@ -1,3 +1,6 @@
+/*****
+Entire File Written by Austin Bingham
+*****/
 package com.TH16;
 public class ErrorMessage {
 	static private boolean error = false;

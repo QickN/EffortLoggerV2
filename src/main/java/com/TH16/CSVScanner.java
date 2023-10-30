@@ -1,3 +1,7 @@
+/*****
+Entire File Written by Ryan Leigh
+*****/
+
 package com.TH16;
 
 import java.io.File;
@@ -9,6 +13,7 @@ public class CSVScanner {
 	private ReferenceStory referenceStory;
 	private ArrayList<ReferenceStory> referenceStories;
 	
+	//scanner overload for filename
 	public CSVScanner(String filename) {
         referenceStories = new ArrayList<>();
 
@@ -43,7 +48,7 @@ public class CSVScanner {
             System.out.println();
         }
     }
-	
+	//scanner overload for file input
 	public CSVScanner(File file) {
         referenceStories = new ArrayList<>();
 
@@ -78,11 +83,11 @@ public class CSVScanner {
             System.out.println();
         }
     }
-	
+	//getter for the controller
 	public ArrayList<ReferenceStory> getReferenceStoryList() {
     	return referenceStories;
     }
-
+//helper class to allow the foundation for all reference stories
     public class ReferenceStory {
         private String name;
         private String description;

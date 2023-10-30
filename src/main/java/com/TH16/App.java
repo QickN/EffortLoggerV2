@@ -1,3 +1,7 @@
+/*****
+Worked On Collaboratively With The Entire Team. Nick Quam wrote the UI and most of this file. 
+*****/
+
 package com.TH16;
 
 import java.time.LocalTime;

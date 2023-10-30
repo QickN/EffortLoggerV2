@@ -1,3 +1,6 @@
+/*****
+Entire File Written by Ryan Leigh
+*****/
 package com.TH16;
 
 import java.io.File;
@@ -38,9 +41,6 @@ public class ReferenceStoriesController implements Initializable {
 	@FXML
 	private Stage stage;
 	
-	public void comboTouched(ActionEvent e) {
-		
-	}
 	
 	public void button(ActionEvent e) {
 		int index = lifeCycleComboBox.getSelectionModel().getSelectedIndex();
@@ -64,19 +64,7 @@ public class ReferenceStoriesController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//ObservableList<ReferenceStory> referenceStories = FXCollections.observableArrayList(stories.getReferenceStoryList());
-		//referenceStoryComboBox.getItems().add("Tic Tac Toe");
 		files.add(tempFile);
-        // Set the items of the ComboBox
-		/*
-		for (ReferenceStory story : stories.getReferenceStoryList()) {
-			lifeCycleComboBox.getItems().addAll(story.getName());
-		}
-		*/
-		
-        // You can also set an initial selection if needed
-        //referenceStoryComboBox.getSelectionModel().selectFirst();
-		
 	}
 	
 	
