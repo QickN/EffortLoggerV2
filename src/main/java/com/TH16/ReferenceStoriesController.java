@@ -7,11 +7,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import com.TH16.CSVScanner.ReferenceStory;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,7 +37,7 @@ public class ReferenceStoriesController implements Initializable {
 	@FXML
 	private Stage stage;
 	
-	
+	//when the update button is pressed, this method will update all labels with the acquired information
 	public void button(ActionEvent e) {
 		int index = lifeCycleComboBox.getSelectionModel().getSelectedIndex();
 		referenceStory = stories.getReferenceStoryList().get(index);
@@ -49,6 +45,8 @@ public class ReferenceStoriesController implements Initializable {
 		effortLabel.setText(referenceStory.getEffort());
 		nameLabel.setText(referenceStory.getName());
 	}
+	//when one selects the import button, it will run this method
+	//this method will open a file dialog for the user to select a file, one selected it is read and parsed for information
 	public void selectFile() {
 		FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
@@ -64,6 +62,7 @@ public class ReferenceStoriesController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		//on startup, it adds a predetermined file
 		files.add(tempFile);
 	}
 	

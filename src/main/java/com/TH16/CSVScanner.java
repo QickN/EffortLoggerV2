@@ -26,7 +26,7 @@ public class CSVScanner {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] data = line.split(",");
-
+                //assures csv is proper format
                 if (data.length == 3) {
                     String name = data[0];
                     String description = data[1];
@@ -98,7 +98,7 @@ public class CSVScanner {
             this.description = description;
             this.effort = effort;
         }
-
+//getters
         public String getName() {
             return name;
         }
