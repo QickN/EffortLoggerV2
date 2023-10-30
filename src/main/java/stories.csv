@@ -1,0 +1,5 @@
+Name,Description,Effort
+Game Setup,"Set up the basic structure of the game including the game board and player data and the initial game state.",4 hours
+Player Turns,"Implement the logic for players to take their turns alternating between X and O.",6 hours
+Win Detection,Create the logic to detect a winning move or a draw.,8 hours
+User Interface,"Design and implement the user interface for the game including the game board and feedback to the players.",6 hours
