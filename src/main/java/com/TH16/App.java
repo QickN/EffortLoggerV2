@@ -139,15 +139,18 @@ public class App extends Application {
         Label planningPokerLabel = new Label("5. Planning Poker Input");
         Label userStoryName = new Label("Name of user: ");
         TextField storyNameInput = new TextField();
+        Button submitUserStory = new Button("Submit");
         Label userStoryText = new Label("User story: ");
         TextField storyText = new TextField();
+        Button submitStory = new Button("Submit");
         Label keyWordsText = new Label("Key Words: ");
         TextField keyWordsInput = new TextField();
+        Button submitKeyWords = new Button("Submit");
 
 
         HBox bottomButtonsHBox = new HBox(10, effortLogButton, defectLogButton, DefinitionsButton, effortAndDefectLogsConsole);
-        HBox bottomButtonsHBox2 = new HBox(10, userStoryName, storyNameInput, userStoryText, storyText);
-        HBox bottomButtonsHBox3 = new HBox(10, keyWordsText, keyWordsInput);
+        HBox bottomButtonsHBox2 = new HBox(10, userStoryName, storyNameInput,submitUserStory, userStoryText, storyText, submitStory);
+        HBox bottomButtonsHBox3 = new HBox(10, keyWordsText, keyWordsInput, submitKeyWords);
 
         VBox bottomBox = new VBox(instruction4, bottomButtonsHBox, planningPokerLabel, bottomButtonsHBox2);
         bottomBox.setSpacing(10);
