@@ -6,10 +6,13 @@ package com.TH16;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -146,33 +149,26 @@ public class App extends Application {
         Button effortAndDefectLogsConsole = new Button("Effort and Defect Logs Console");
         Label planningPokerLabel = new Label("5. Planning Poker Input");
         Label userStoryName = new Label("Name of user: ");
-        TextField storyNameInput = new TextField();
-        storyNameInput.setOnAction(event -> {
-        	try {
-                FXMLLoader input_loader = new FXMLLoader(getClass().getResource("InputValidation.fxml"));
-                Pane content = input_loader.load();
-                Stage newStage = new Stage();
-                newStage.setTitle("New Window");
-                Scene newScene = new Scene(content);
-                newStage.setScene(newScene);
-                newStage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+
+        var storyNameInput = new ValidatingTextField(input -> (input.matches("[a-zA-Z.,-/ ]+")) && (input.length() <= 50));
         Button submitUserStory = new Button("Submit");
+        submitUserStory.disableProperty().bind(storyNameInput.isValidProperty.not());
         submitUserStory.setOnAction(event -> {
         	name = storyNameInput.getText();
         });
         Label userStoryText = new Label("User story: ");
-        TextField storyText = new TextField();
+//        TextField storyText = new TextField();
+        var storyText = new ValidatingTextField(input -> (input.matches("[a-zA-Z.,-/ ]+")) && (input.length() <= 50));
         Button submitStory = new Button("Submit");
+        submitStory.disableProperty().bind(storyText.isValidProperty.not());
         submitStory.setOnAction(event -> {
         	userStory = storyText.getText();
         });
         Label keyWordsText = new Label("Key Words: ");
-        TextField keyWordsInput = new TextField();
+//        TextField keyWordsInput = new TextField();
+        var keyWordsInput = new ValidatingTextField(input -> (input.matches("[a-zA-Z.,-/ ]+")) && (input.length() <= 50));
         Button submitKeyWords = new Button("Submit");
+        submitKeyWords.disableProperty().bind(keyWordsInput.isValidProperty.not());
         submitKeyWords.setOnAction(event -> {
         	keywords.add(keyWordsInput.getText());
         });
@@ -299,6 +295,20 @@ public class App extends Application {
         }
     }
     
+    private static class ValidatingTextField extends TextField {
+		private final Predicate<String> validation;
+		
+		ValidatingTextField(Predicate<String> validation){
+				this.validation = validation;
+				
+				textProperty().addListener((o, oldV, newText) -> {
+					isValidProperty.set(validation.test(newText));
+				});
+				
+				isValidProperty.set(validation.test(""));
+		}
+		private BooleanProperty isValidProperty = new SimpleBooleanProperty();
+	}
     
     
     

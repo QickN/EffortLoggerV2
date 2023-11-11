@@ -9,7 +9,7 @@ public class ErrorMessage {
 	public ErrorMessage() {
 		
 	}
-	public ErrorMessage(boolean error, String errMsg) {
+	public ErrorMessage(boolean error, String errMsg) {//constructor for error message class
 		ErrorMessage.error = error;
 		ErrorMessage.errMsg = errMsg;
 	}

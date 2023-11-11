@@ -9,11 +9,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class InputValidationController {
-		static final int TEXT_FIELD_MAX_INPUT = 6;
+		static final int TEXT_FIELD_MAX_INPUT = 6; //set length of max input
 		
-		ValidateTextField validateTextField = new ValidateTextField();
+		ValidateTextField validateTextField = new ValidateTextField(); //create new validation text field object
 		
-		ErrorMessage errorMessage = new ErrorMessage();
+		ErrorMessage errorMessage = new ErrorMessage(); //create new error message object
 		
 		
 	    @FXML
@@ -26,21 +26,21 @@ public class InputValidationController {
 	    void textFieldClicked(MouseEvent event) {
 	    	displayErrMsg("");
 	    	
-	    	validateTextField.setOldCursorCaretPosition(textFieldInput.getCaretPosition());
+	    	validateTextField.setOldCursorCaretPosition(textFieldInput.getCaretPosition()); //keep track of cursor
 	    }
 
 	    @FXML
 	    void validateTextFieldKeyTyped(KeyEvent event) {
 	    	displayErrMsg("");
 	    	
-	    	errorMessage = validateTextField.validateDigit(textFieldInput, event, TEXT_FIELD_MAX_INPUT);
+	    	errorMessage = validateTextField.validateAlpha(textFieldInput, event, TEXT_FIELD_MAX_INPUT);
 	    	if(ErrorMessage.isError()) {
-	    		displayErrMsg(ErrorMessage.getErrMsg());
+	    		displayErrMsg(ErrorMessage.getErrMsg()); //display error
 	    	}
 	    }
 
 	    void displayErrMsg(String msg) {
-	    	labelErrorMsg.setText(msg);
+	    	labelErrorMsg.setText(msg); //error message
 	    }
 	}
 

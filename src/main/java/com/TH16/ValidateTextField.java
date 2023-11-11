@@ -3,6 +3,7 @@ Entire File Written by Austin Bingham
 *****/
 
 package com.TH16;
+import com.TH16.ErrorMessage;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
@@ -16,31 +17,31 @@ public class ValidateTextField {
 	static final int DEL = 127;
 	static final int ENTER = 13;
 	
-	public ErrorMessage validateDigit(TextField textField, KeyEvent event, int textFieldMaxInput) {
+	public ErrorMessage validateAlpha(TextField textField, KeyEvent event, int textFieldMaxInput) {
 		boolean error = false;
 		String errorMsg = "";
 		
 		char currentKeyTyped = event.getCharacter().charAt(0);
 		
-		final Boolean PASTE_KEY = currentKeyTyped == CTRL_V;
+		final Boolean PASTE_KEY = currentKeyTyped == CTRL_V; //cannot paste
 		final Boolean INVALID_KEY
-			= (!Character.isAlphabetic(currentKeyTyped))
-			&& (currentKeyTyped != BACK_SPACE)
-			&& (currentKeyTyped != DEL)
-			&& (currentKeyTyped != ENTER)
-			&& (!Character.isISOControl(currentKeyTyped));
+			= (!Character.isAlphabetic(currentKeyTyped)) //must be a character
+			&& (currentKeyTyped != BACK_SPACE) //can back space
+			&& (currentKeyTyped != DEL) //can delete
+			&& (currentKeyTyped != ENTER) // can hit enter
+			&& (!Character.isISOControl(currentKeyTyped)); //can do other controls
 		
 		currentCursorCaretPosition = textField.getCaretPosition();
 		
 		try {
-			if (PASTE_KEY) {
+			if (PASTE_KEY) {//checks if user trys to paste
 				error = true;
 				errorMsg = "ERROR: Paste NOT allowed";
 				
 				textField.setText(oldTextFieldContents);
 				textField.positionCaret(getOldCursorCaretPosition());;
 			}
-			else if (INVALID_KEY) {
+			else if (INVALID_KEY) { //checks for invalid keys
 				String replaceText = textField.getText().replace(Character.toString(currentKeyTyped), "");
 				
 				error = true;
@@ -50,7 +51,7 @@ public class ValidateTextField {
 				textField.positionCaret(currentCursorCaretPosition - 1);
 			}
 			
-			if(textField.getText().length() > textFieldMaxInput) {
+			if(textField.getText().length() > textFieldMaxInput) { //checks length
 				String textInput = textField.getText();
 				
 				error = true;
@@ -72,6 +73,8 @@ public class ValidateTextField {
 			return new ErrorMessage(true, "Error: Exception Caught");
 		}
 	}
+	
+	//tracking cursor
 	public int getOldCursorCaretPosition() {
 			return oldCursorCaretPosition;
 	}
