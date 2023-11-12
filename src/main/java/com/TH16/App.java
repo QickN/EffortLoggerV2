@@ -45,7 +45,7 @@ public class App extends Application {
     public String userStory;
     public ArrayList<String> keywords;
     public String name;
-    ArrayList<String> userStories = new ArrayList<>();
+    public ArrayList<String> userStories = new ArrayList<>();
 
 
     public static void main(String[] args) {
