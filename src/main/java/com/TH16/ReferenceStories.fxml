@@ -24,7 +24,7 @@ Entire File Written by Ryan Leigh
             <Label layoutX="36.0" layoutY="143.0" prefHeight="17.0" prefWidth="174.0" text="2. Select a Life Cycle Step:" />
             <ComboBox prefWidth="150.0" />
             <ComboBox prefWidth="150.0" />
-            <ComboBox fx:id="lifeCycleComboBox" layoutX="36.0" layoutY="167.0" prefWidth="150.0"  />
+            <ComboBox fx:id="lifeCycleComboBox" layoutX="36.0" layoutY="167.0" prefWidth="150.0" />
             <Label layoutX="36.0" layoutY="294.0" prefHeight="17.0" prefWidth="150.0" text="Description:" />
             <Label fx:id="descriptionLabel" wrapText="true" alignment="TOP_LEFT" layoutX="36.0" layoutY="311.0" prefHeight="109.0" prefWidth="263.0" text="(This is the description of the story)" />
             <Label layoutX="36.0" layoutY="435.0" prefHeight="17.0" prefWidth="150.0" text="Effort Category:" />

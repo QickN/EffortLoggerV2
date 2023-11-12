@@ -48,7 +48,7 @@ public class App extends Application {
     public String userStory;
     public ArrayList<String> keywords;
     public String name;
-    public ArrayList<String> userStories = new ArrayList<>();
+    private static ArrayList<String> userStories = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -157,13 +157,16 @@ public class App extends Application {
         Label userStoryName = new Label("Name of user: ");
 
         var storyNameInput = new ValidatingTextField(input -> (input.matches("[a-zA-Z.,-/ ]+")) && (input.length() <= 50));
+        
         Button submitUserStory = new Button("Submit");
         submitUserStory.disableProperty().bind(storyNameInput.isValidProperty.not());
         submitUserStory.setOnAction(event -> {
         	name = storyNameInput.getText();
         });
+        
         Label userStoryText = new Label("User story: ");
 //        TextField storyText = new TextField();
+ 
         var storyText = new ValidatingTextField(input -> (input.matches("[a-zA-Z.,-/ ]+")) && (input.length() <= 50));
         Button submitStory = new Button("Submit");
         submitStory.disableProperty().bind(storyText.isValidProperty.not());
@@ -348,6 +351,10 @@ public class App extends Application {
     public void updatePlanningPokerBox() {
         planningPokerComboBox.getItems().clear();
         planningPokerComboBox.getItems().addAll(userStories);
+    }
+    
+    public static ArrayList<String> getUserStories() {
+    	return userStories;
     }
 
     

@@ -7,34 +7,33 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TH16.PlanningPokerController">
    <children>
       <Label layoutX="20.0" layoutY="58.0" prefHeight="17.0" prefWidth="320.0" text="1. How Many Team Members Will Be in This Session?" />
-      <TextField layoutX="307.0" layoutY="54.0" />
+      <TextField fx:id="numOfMembersTextField" layoutX="307.0" layoutY="54.0" onAction="#setNumberOfMembers"/>
       <Label layoutX="456.0" layoutY="58.0" prefHeight="17.0" prefWidth="84.0" text="members." />
-      <Label layoutX="20.0" layoutY="98.0" prefHeight="17.0" prefWidth="199.0" text="2. Import a CSV with User Storie:" />
+      <Label layoutX="20.0" layoutY="98.0" prefHeight="17.0" prefWidth="457.0" text="2. Ensure you don't out of time AND Have User Stories Added From EffortLogger Tab" />
       <Label layoutX="295.0" layoutY="14.0" text="Planning Poker">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Button layoutX="29.0" layoutY="115.0" mnemonicParsing="false" text="Import CSV" />
       <Label layoutX="20.0" layoutY="152.0" prefHeight="17.0" prefWidth="208.0" text="3. Read The Story Point to the Group:" />
-      <Label layoutX="228.0" layoutY="152.0" prefHeight="17.0" prefWidth="208.0" text="[Story Point 0/5]" />
-      <Label layoutX="20.0" layoutY="169.0" prefHeight="123.0" prefWidth="457.0" text="(This will be the first user story from the csv)" />
+      <Label fx:id="storyPointNumLabel" layoutX="228.0" layoutY="152.0" prefHeight="17.0" prefWidth="208.0" text="[Story Point 0/5]" />
+      <Label fx:id="storyPointTextLabel" layoutX="20.0" layoutY="169.0" prefHeight="123.0" prefWidth="457.0" text="(This will be the first user story from the csv)" />
       <Label layoutX="15.0" layoutY="300.0" prefHeight="17.0" prefWidth="223.0" text="4. Add Team Member Estimates:" />
-      <HBox layoutX="20.0" layoutY="317.0" prefHeight="100.0" prefWidth="717.0">
+      <HBox fx:id="hbox" layoutX="20.0" layoutY="317.0" prefHeight="100.0" prefWidth="717.0">
          <children>
             <TextField />
          </children>
       </HBox>
       <Label layoutX="326.0" layoutY="152.0" prefHeight="17.0" prefWidth="184.0" text="Add a Weight For This Story Point:" />
-      <TextField layoutX="510.0" layoutY="148.0" />
+      <TextField fx:id="storyPointWeightTextField" layoutX="510.0" layoutY="148.0" />
       <Label layoutX="666.0" layoutY="152.0" text="/4" />
       <Label layoutX="29.0" layoutY="449.0" prefHeight="17.0" prefWidth="246.0" text="5. Final Computed Estimate:" />
-      <Label layoutX="203.0" layoutY="449.0" prefHeight="17.0" prefWidth="184.0" text="(Estimated)" />
+      <Label fx:id="computedEstimation" layoutX="203.0" layoutY="449.0" prefHeight="17.0" prefWidth="184.0" text="(Estimated)" />
       <Button layoutX="20.0" layoutY="489.0" mnemonicParsing="false" text="Generate Planning Poker Card For This Session" />
       <Button layoutX="20.0" layoutY="417.0" mnemonicParsing="false" text="Click To Go to Next Story Point" />
+      <Button fx:id="localStoryButton" layoutX="29.0" layoutY="115.0" mnemonicParsing="false" onAction="#useLocalStories" text="Use Local User Story" />
    </children>
 </Pane>

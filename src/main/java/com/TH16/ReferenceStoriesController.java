@@ -28,7 +28,6 @@ public class ReferenceStoriesController implements Initializable {
 	@FXML
 	private Label nameLabel;
 	private CSVScanner stories;
-	private String[] items;
 	private ArrayList<File> files = new ArrayList<File>();
 	private File tempFile = new File("stories.csv");
 	private ReferenceStory referenceStory;
