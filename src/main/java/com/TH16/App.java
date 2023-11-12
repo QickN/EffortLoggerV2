@@ -273,12 +273,19 @@ public class App extends Application {
 
         //Planning Poker Tab
         Tab tab8 = new Tab("Planning Poker");
-        VBox planningPokerContent = new VBox(10);
-        planningPokerContent.setPadding(new Insets(10, 10, 10, 10));
-        planningPokerContent.setAlignment(Pos.CENTER);
-        Label selectStoryLabel = new Label("Select a User Story:");
-        planningPokerContent.getChildren().addAll(selectStoryLabel, planningPokerComboBox);
-        tab8.setContent(planningPokerContent);
+        //VBox planningPokerContent = new VBox(10);
+       // planningPokerContent.setPadding(new Insets(10, 10, 10, 10));
+       // planningPokerContent.setAlignment(Pos.CENTER);
+       // Label selectStoryLabel = new Label("Select a User Story:");
+       // planningPokerContent.getChildren().addAll(selectStoryLabel, planningPokerComboBox);
+        //tab8.setContent(planningPokerContent);
+        try {
+            FXMLLoader tab8_loader = new FXMLLoader(getClass().getResource("PlanningPoker.fxml"));
+            Pane content = tab8_loader.load();
+            tab8.setContent(content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         tabPane.getTabs().add(tab8);
 
         //Change Between Scenes
