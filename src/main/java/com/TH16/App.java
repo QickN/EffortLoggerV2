@@ -36,8 +36,6 @@ import javafx.scene.control.TextField;
 import javafx.geometry.Side;
 
 
-
-
 public class App extends Application {
 
     // Add all the variables here
@@ -47,6 +45,7 @@ public class App extends Application {
     public String userStory;
     public ArrayList<String> keywords;
     public String name;
+    ArrayList<String> userStories = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -176,6 +175,12 @@ public class App extends Application {
         Button submitStory = new Button("Submit");
         submitStory.setOnAction(event -> {
         	userStory = storyText.getText();
+            name = storyNameInput.getText();
+            String combinedString = name + ": " + userStory;
+            userStories.add(combinedString);
+            updatePlanningPokerBox();
+            storyText.clear();
+            storyNameInput.clear();
         });
         Label keyWordsText = new Label("Key Words: ");
         TextField keyWordsInput = new TextField();
@@ -268,7 +273,12 @@ public class App extends Application {
 
         //Planning Poker Tab
         Tab tab8 = new Tab("Planning Poker");
-        tab8.setContent(new Label("Content for Another Page"));
+        VBox planningPokerContent = new VBox(10);
+        planningPokerContent.setPadding(new Insets(10, 10, 10, 10));
+        planningPokerContent.setAlignment(Pos.CENTER);
+        Label selectStoryLabel = new Label("Select a User Story:");
+        planningPokerContent.getChildren().addAll(selectStoryLabel, planningPokerComboBox);
+        tab8.setContent(planningPokerContent);
         tabPane.getTabs().add(tab8);
 
         //Change Between Scenes
@@ -309,6 +319,12 @@ public class App extends Application {
     }
     
     
-    
+    private ComboBox<String> planningPokerComboBox = new ComboBox<>();
+
+    public void updatePlanningPokerBox() {
+        planningPokerComboBox.getItems().clear();
+        planningPokerComboBox.getItems().addAll(userStories);
+    }
+
     
 }
