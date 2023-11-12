@@ -1,8 +1,3 @@
-<!-- 
-	This file was made by Austin Bingham through Scene Builder
- -->
-
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
@@ -16,7 +11,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TH16.DefinitionsTabController">
    <children>
-      <ScrollPane prefHeight="1944.0" prefWidth="1128.0" AnchorPane.bottomAnchor="-1344.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-328.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1775.0" prefWidth="1136.0">
                <children>
