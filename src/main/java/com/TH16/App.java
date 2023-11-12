@@ -237,7 +237,7 @@ public class App extends Application {
         try {
             FXMLLoader tab5_loader = new FXMLLoader(getClass().getResource("DefinitionsTab.fxml"));
             Pane content = tab5_loader.load();
-            tab2.setContent(content);
+            tab5.setContent(content);
         } catch (Exception e) {
             e.printStackTrace();
         }
