@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 public class DefinitionsTabController {
 	
 	@FXML
-	private TextField keyWord1;
+	public TextField keyWord1;
 	@FXML
 	private TextField keyWord2;
 	@FXML
@@ -145,5 +145,8 @@ public class DefinitionsTabController {
 	 */
 	public String[] getKeyWords() {
 		return keyWords;
+	}
+	public String getKeyWord1() {
+		return keyWord1.getText();
 	}
 }

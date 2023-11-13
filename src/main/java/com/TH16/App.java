@@ -47,8 +47,16 @@ public class App extends Application {
     private Timeline timeline;
     private LocalTime startTime;
     public String userStory;
-    public ArrayList<String> keywords;
+    public ArrayList<String> keywords = new ArrayList<>();
     public String name;
+<<<<<<< Updated upstream
+=======
+    public ArrayList<String> userStories = new ArrayList<>();
+    public String[] availableKeyWords;
+    public int j = 0;
+    public boolean flag;
+    FXMLLoader tab5_loader = new FXMLLoader(getClass().getResource("DefinitionsTab.fxml"));
+>>>>>>> Stashed changes
 
 
     public static void main(String[] args) {
@@ -169,8 +177,26 @@ public class App extends Application {
         var keyWordsInput = new ValidatingTextField(input -> (input.matches("[a-zA-Z.,-/ ]+")) && (input.length() <= 50));
         Button submitKeyWords = new Button("Submit");
         submitKeyWords.disableProperty().bind(keyWordsInput.isValidProperty.not());
+        
+        
+        
+        
         submitKeyWords.setOnAction(event -> {
-        	keywords.add(keyWordsInput.getText());
+           	DefinitionsTabController dtc = tab5_loader.getController();
+        	availableKeyWords = dtc.getKeyWords();
+        	flag = false;
+        	for(int i = 0; i < 20; i++) {
+        		if (keyWordsInput.getText().equals(availableKeyWords[i])) {
+        			keywords.add(keyWordsInput.getText());
+        			flag = true;
+            		System.out.println("success");
+        		}
+        	}
+        	if(flag == false) {
+        		System.out.println("KeyWord not in available key word list specified in the Definitions tab. "
+        				+ "Either add the desired Keyword to the available keywords list or use already available keywords.");
+        	}
+        	
         });
 
 
@@ -235,7 +261,6 @@ public class App extends Application {
         //Defect Log Editor Tab
         Tab tab5 = new Tab("Definitions");
         try {
-            FXMLLoader tab5_loader = new FXMLLoader(getClass().getResource("DefinitionsTab.fxml"));
             Pane content = tab5_loader.load();
             tab5.setContent(content);
         } catch (Exception e) {
