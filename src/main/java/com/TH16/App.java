@@ -330,7 +330,7 @@ public class App extends Application {
             clockStatus.setText(String.format("Clock is running | %02d:%02d:%02d", hours, minutes, seconds));
         }
     }
-    
+    /*
     private static class ValidatingTextField extends TextField {
 		private final Predicate<String> validation;
 		
@@ -344,8 +344,33 @@ public class App extends Application {
 				isValidProperty.set(validation.test(""));
 		}
 		private BooleanProperty isValidProperty = new SimpleBooleanProperty();
+		
 	}
-    
+    */
+    private static class ValidatingTextField extends TextField {
+        private final Predicate<String> validation;
+        private final BooleanProperty isValidProperty;
+
+        ValidatingTextField(Predicate<String> validation) {
+            this.validation = validation;
+            this.isValidProperty = new SimpleBooleanProperty();
+
+            textProperty().addListener((o, oldV, newText) -> {
+                isValidProperty.set(validation.test(newText));
+            });
+
+            isValidProperty.set(validation.test(""));
+        }
+
+        public boolean isValid() {
+            return isValidProperty.get();
+        }
+
+        public BooleanProperty isValidProperty() {
+            return isValidProperty;
+        }
+    }
+
     private ComboBox<String> planningPokerComboBox = new ComboBox<>();
 
     public void updatePlanningPokerBox() {
