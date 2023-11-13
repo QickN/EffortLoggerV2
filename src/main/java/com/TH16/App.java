@@ -49,14 +49,12 @@ public class App extends Application {
     public String userStory;
     public ArrayList<String> keywords = new ArrayList<>();
     public String name;
-<<<<<<< Updated upstream
-=======
+
     public ArrayList<String> userStories = new ArrayList<>();
     public String[] availableKeyWords;
     public int j = 0;
     public boolean flag;
     FXMLLoader tab5_loader = new FXMLLoader(getClass().getResource("DefinitionsTab.fxml"));
->>>>>>> Stashed changes
 
 
     public static void main(String[] args) {
