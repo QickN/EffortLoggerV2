@@ -75,7 +75,6 @@ public class PlanningPokerController {
 		} catch (NumberFormatException e) {
             System.out.println("Put In An Integer Please");
         }
-		
 	}
 	
 	public void nextStoryPoint() {
