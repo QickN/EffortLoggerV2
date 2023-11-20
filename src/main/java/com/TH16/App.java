@@ -50,7 +50,6 @@ public class App extends Application {
     public String name;
     private static ArrayList<String> userStories = new ArrayList<>();
 
-    public ArrayList<String> userStories = new ArrayList<>();
     public String[] availableKeyWords;
     public int j = 0;
     public boolean flag;
@@ -108,30 +107,154 @@ public class App extends Application {
         //Added more vboxes to change the layout
         VBox centerTopBox = new VBox(10, instructionAndButtonHBox, instructionAndButtonHBox2);
         Label instruction2 = new Label("2. Select the project, life cycle step, effort category, and deliverable from the following lists:");
-
         //Added some comboboxes for the middle of the screen
         ComboBox<String> projectCombo = new ComboBox<>();
-        String[] projects = {"Business Project", "Development Project"};
-        projectCombo.getItems().addAll(projects);
+        projectCombo.setMinWidth(200);
+        projectCombo.setOnMouseClicked( event ->{
+            DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+            projectCombo.getItems().clear();
+            projectCombo.getItems().addAll(dtc.getProjects());
+        });
+        
         Label projectLabel = new Label("Project:");
         HBox projectHBox = new HBox(10, projectLabel, projectCombo);
         
         // Adding more ComboBoxes for Life Cycle Step, Effort Category, etc.
         ComboBox<String> lifeCycleCombo = new ComboBox<>();
-        String[] lifeCycleStep = {"Planning", "Information Gathering", "Information Understanding", "Verifying", "Outlining", "Drafting", "Finalizing", "Team Meeting", "Coach Meeting", "Stakeholder Meeting"};
-        lifeCycleCombo.getItems().addAll(lifeCycleStep);
+        lifeCycleCombo.setMinWidth(200);
+        lifeCycleCombo.setOnMouseClicked( event ->{
+            DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+            String[] projects = dtc.getProjects();
+            String[] lifeCycleSteps = dtc.getLifeCycleSteps();
+            String[] p1LCS = dtc.getP1LCS();
+            String[] p2LCS = dtc.getP2LCS();
+            String[] p3LCS = dtc.getP3LCS();
+            String[] p4LCS = dtc.getP4LCS();
+            String[] p5LCS = dtc.getP5LCS();
+            String[] p6LCS = dtc.getP6LCS();
+            String[] p7LCS = dtc.getP7LCS();
+            String[] p8LCS = dtc.getP8LCS();
+            String[] p9LCS = dtc.getP9LCS();
+            String[] p10LCS = dtc.getP10LCS();
+            lifeCycleCombo.getItems().clear();
+            
+            /* 
+             * The following if else sequence captures the correct life cycle steps for the selected project
+             */
+            if(projectCombo.getValue().equals(projects[0])) {
+            	int i = 0;
+            	while((p1LCS[i]) != "") {
+            		int j = Integer.parseInt(p1LCS[i]);
+                    lifeCycleCombo.getItems().add(lifeCycleSteps[j-1]);
+                    i++;
+            	}
+            }
+            else if(projectCombo.getValue().equals(projects[1])) {
+            	int i = 0;
+            	while((p2LCS[i]) != "") {
+            		int j = Integer.parseInt(p2LCS[i]);
+                    lifeCycleCombo.getItems().add(lifeCycleSteps[j-1]);
+                    i++;
+            	}
+            }
+            else if(projectCombo.getValue().equals(projects[2])) {
+            	int i = 0;
+            	while((p3LCS[i]) != "") {
+            		int j = Integer.parseInt(p3LCS[i]);
+                    lifeCycleCombo.getItems().add(lifeCycleSteps[j-1]);
+                    i++;
+            	}
+            }
+            else if(projectCombo.getValue().equals(projects[3])) {
+            	int i = 0;
+            	while((p4LCS[i]) != "") {
+            		int j = Integer.parseInt(p4LCS[i]);
+                    lifeCycleCombo.getItems().add(lifeCycleSteps[j-1]);
+                    i++;
+            	}
+            }
+            else if(projectCombo.getValue().equals(projects[4])) {
+            	int i = 0;
+            	while((p5LCS[i]) != "") {
+            		int j = Integer.parseInt(p5LCS[i]);
+                    lifeCycleCombo.getItems().add(lifeCycleSteps[j-1]);
+                    i++;
+            	}
+            }
+            else if(projectCombo.getValue().equals(projects[5])) {
+            	int i = 0;
+            	while((p6LCS[i]) != "") {
+            		int j = Integer.parseInt(p6LCS[i]);
+                    lifeCycleCombo.getItems().add(lifeCycleSteps[j-1]);
+                    i++;
+            	}
+            }
+            else if(projectCombo.getValue().equals(projects[6])) {
+            	int i = 0;
+            	while((p7LCS[i]) != "") {
+            		int j = Integer.parseInt(p7LCS[i]);
+                    lifeCycleCombo.getItems().add(lifeCycleSteps[j-1]);
+                    i++;
+            	}
+            }
+            else if(projectCombo.getValue().equals(projects[7])) {
+            	int i = 0;
+            	while((p8LCS[i]) != "") {
+            		int j = Integer.parseInt(p8LCS[i]);
+                    lifeCycleCombo.getItems().add(lifeCycleSteps[j-1]);
+                    i++;
+            	}
+            }
+            else if(projectCombo.getValue().equals(projects[8])) {
+            	int i = 0;
+            	while((p9LCS[i]) != "") {
+            		int j = Integer.parseInt(p9LCS[i]);
+                    lifeCycleCombo.getItems().add(lifeCycleSteps[j-1]);
+                    i++;
+            	}
+            }
+            else if(projectCombo.getValue().equals(projects[9])) {
+            	int i = 0;
+            	while((p10LCS[i]) != "") {
+            		int j = Integer.parseInt(p10LCS[i]);
+                    lifeCycleCombo.getItems().add(lifeCycleSteps[j-1]);
+                    i++;
+            	}
+            }
+        });
+        
         Label lifeCycleLabel = new Label("Life Cycle Step:");
         HBox lifeCycleHBox = new HBox(10, lifeCycleLabel, lifeCycleCombo);
 
         //Adding more ComboBoxes for Effort Category
         ComboBox<String> effortCategoryCombo = new ComboBox<>();
-        String[] EffortCategoryBox = {"Plans", "Deliverables", "Interuptions", "Defects", "Others"};
-        effortCategoryCombo.getItems().addAll(EffortCategoryBox);
+        effortCategoryCombo.setMinWidth(200);
+        effortCategoryCombo.setOnMouseClicked( event ->{
+            DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+            effortCategoryCombo.getItems().clear();
+            effortCategoryCombo.getItems().addAll(dtc.getEffortCategories());
+        });
 
         //Adding more ComboBoxes for Effort Category
         ComboBox<String> effortCategoryCombo2 = new ComboBox<>();
-        String[] EffortCategoryBox2 = {"Project Plan", "Risk Management Plan", "Conceptual Design Plan", "Detailed Design Plan", "Implementation Plan"};
-        effortCategoryCombo2.getItems().addAll(EffortCategoryBox2);
+        effortCategoryCombo2.setMinWidth(200);
+        effortCategoryCombo2.setOnMouseClicked( event ->{
+            DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+            effortCategoryCombo2.getItems().clear();
+            if(effortCategoryCombo.getValue().equals("Plans")) {
+            	effortCategoryCombo2.getItems().addAll(dtc.getPlans());
+            }
+            else if(effortCategoryCombo.getValue().equals("Deliverables")) {
+            	effortCategoryCombo2.getItems().addAll(dtc.getDeliverables());
+            }
+            else if(effortCategoryCombo.getValue().equals("Interruptions")) {
+            	effortCategoryCombo2.getItems().addAll(dtc.getInterruptions());
+            }
+            else if(effortCategoryCombo.getValue().equals("Defects")) {
+            	// TODO add defects - need data from defect console
+            }
+        });
+
         Label effortCategoryLabel = new Label("Effort Category:");
         HBox effortCategoryHBox = new HBox(10, effortCategoryLabel, effortCategoryCombo, effortCategoryCombo2);
 
@@ -191,21 +314,19 @@ public class App extends Application {
         Button submitKeyWords = new Button("Submit");
         submitKeyWords.disableProperty().bind(keyWordsInput.isValidProperty.not());
         
-        
-        
-        
+        //when a keyword is inputed check if it is in the pool of available keywords from definitions tab
         submitKeyWords.setOnAction(event -> {
-           	DefinitionsTabController dtc = tab5_loader.getController();
-        	availableKeyWords = dtc.getKeyWords();
+        	DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+        	availableKeyWords = dtc.getKeyWords(); //get list of keywords
         	flag = false;
-        	for(int i = 0; i < 20; i++) {
+        	for(int i = 0; i < 20; i++) { //check keyword pool
         		if (keyWordsInput.getText().equals(availableKeyWords[i])) {
-        			keywords.add(keyWordsInput.getText());
+        			keywords.add(keyWordsInput.getText()); //add keyword to project's keywords
         			flag = true;
             		System.out.println("success");
         		}
         	}
-        	if(flag == false) {
+        	if(flag == false) { //keyword not available
         		System.out.println("KeyWord not in available key word list specified in the Definitions tab. "
         				+ "Either add the desired Keyword to the available keywords list or use already available keywords.");
         	}
