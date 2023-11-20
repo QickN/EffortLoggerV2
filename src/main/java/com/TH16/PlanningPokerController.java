@@ -18,8 +18,10 @@ public class PlanningPokerController {
 	private CSVScanner stories;
 	private int numberOfTextFields;
 	private ArrayList<String> localUserStories = App.getUserStories();
+	private ArrayList<Integer> storyWeights = new ArrayList<Integer>();
 	private int currentIndex = 0;
 	private List<TextField> textFields = new ArrayList<>();
+	private double totalEstimateHours = 0;
 	@FXML
 	private Stage stage;
 	@FXML
@@ -36,6 +38,9 @@ public class PlanningPokerController {
 	private Label computedEstimation;
 	@FXML
 	private Button localStoryButton;
+	@FXML
+	private Button nextStoryPointButton;
+	
 	
 	public void setNumberOfMembers() {
 		textFields.clear();
@@ -54,16 +59,49 @@ public class PlanningPokerController {
 	}
 	
 	public void useLocalStories() {
-		currentIndex++;
-		storyPointNumLabel.setText("[Story Point "+ currentIndex + "/" + localUserStories.size() + "]");
-		currentIndex--;
+		storyPointNumLabel.setText("[Story Point 0/" + localUserStories.size() + "]");
 		try {
 		storyPointTextLabel.setText(localUserStories.get(currentIndex));
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("enter more user stories");
-			currentIndex--;
 		}
+	}
+	
+	public void setStoryPointWeight() {
+		int tempWeight;
+		try {
+            tempWeight = Integer.parseInt(storyPointWeightTextField.getText());
+            storyWeights.add(tempWeight);
+		} catch (NumberFormatException e) {
+            System.out.println("Put In An Integer Please");
+        }
+		
+	}
+	
+	public void nextStoryPoint() {
 		currentIndex++;
+		if (currentIndex == localUserStories.size()) {
+			nextStoryPointButton.setDisable(true);
+			return;
+		}
+		useLocalStories();
+		int tempEstimate;
+		double average = 0;
+		for (TextField tf : textFields) {
+			try {
+	            tempEstimate = Integer.parseInt(tf.getText());
+	            average+=tempEstimate;
+			} catch (NumberFormatException e) {
+	            System.out.println("Put In An Integer Please");
+	        }
+		}
+		average = average / (double) textFields.size();
+		for (int e: storyWeights) {
+			
+		totalEstimateHours+=average * e;
+		} 
+		computedEstimation.setText(totalEstimateHours + "");
+		
 	}
 	
 	
