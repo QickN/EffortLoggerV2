@@ -10,6 +10,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 public class DefinitionsTabController {
+	/*
+	 * The following TextFields are the TextFields used in scene builder. 
+	 * Do not alter this code.
+	 */
     @FXML
     private TextField defectCategory1;
     @FXML
@@ -860,7 +864,8 @@ public class DefinitionsTabController {
 	}
 	
 	/*
-	 * This method returns the keyWords list to be used by other classes
+	 * The following methods can be called from other sections of the code that require these lists
+	 * For example, a DefinitionsTabController object can be made and can be used to call these methods.
 	 */
 	public String[] getKeyWords() {
 		return keyWords;
@@ -982,7 +987,4 @@ public class DefinitionsTabController {
 				p10LCS24.getText(), p10LCS25.getText() };
 		return p10LCS;
 	}
-//	public String getKeyWord1() {
-//		return keyWord1.getText();
-//	}
 }

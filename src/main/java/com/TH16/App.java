@@ -4,6 +4,7 @@ Worked On Collaboratively With The Entire Team. Nick Quam wrote the UI and most 
 
 package com.TH16;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.function.Predicate;
@@ -13,6 +14,8 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -33,6 +36,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
@@ -45,6 +49,7 @@ public class App extends Application {
     private Label clockStatus;
     private Timeline timeline;
     private LocalTime startTime;
+    private LocalTime endTime;
     public String userStory;
     public ArrayList<String> keywords = new ArrayList<>();
     public String name;
@@ -54,7 +59,17 @@ public class App extends Application {
     public int j = 0;
     public boolean flag;
     FXMLLoader tab5_loader = new FXMLLoader(getClass().getResource("DefinitionsTab.fxml"));
-
+    FXMLLoader tab4_loader = new FXMLLoader(getClass().getResource("LogsTab.fxml"));
+    public static ObservableList<String> p1Activities = FXCollections.observableArrayList();
+    public static ObservableList<String> p2Activities = FXCollections.observableArrayList();
+    public static ObservableList<String> p3Activities = FXCollections.observableArrayList();
+    public static ObservableList<String> p4Activities = FXCollections.observableArrayList();
+    public static ObservableList<String> p5Activities = FXCollections.observableArrayList();
+    public static ObservableList<String> p6Activities = FXCollections.observableArrayList();
+    public static ObservableList<String> p7Activities = FXCollections.observableArrayList();
+    public static ObservableList<String> p8Activities = FXCollections.observableArrayList();
+    public static ObservableList<String> p9Activities = FXCollections.observableArrayList();
+    public static ObservableList<String> p10Activities = FXCollections.observableArrayList();
 
     public static void main(String[] args) {
         launch(args);
@@ -109,10 +124,15 @@ public class App extends Application {
         Label instruction2 = new Label("2. Select the project, life cycle step, effort category, and deliverable from the following lists:");
         //Added some comboboxes for the middle of the screen
         ComboBox<String> projectCombo = new ComboBox<>();
+/********************************************************************************
+ *  						BEGIN AUSTIN'S CONTRIBUTION					    	*
+ * 																				*
+ ********************************************************************************/
         projectCombo.setMinWidth(200);
         projectCombo.setOnMouseClicked( event ->{
             DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
-            projectCombo.getItems().clear();
+          //use dtc to gather information from the definitions tab
+            projectCombo.getItems().clear();//clear before adding
             projectCombo.getItems().addAll(dtc.getProjects());
         });
         
@@ -124,6 +144,7 @@ public class App extends Application {
         lifeCycleCombo.setMinWidth(200);
         lifeCycleCombo.setOnMouseClicked( event ->{
             DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+            //use dtc to gather information from the definitions tab
             String[] projects = dtc.getProjects();
             String[] lifeCycleSteps = dtc.getLifeCycleSteps();
             String[] p1LCS = dtc.getP1LCS();
@@ -136,7 +157,7 @@ public class App extends Application {
             String[] p8LCS = dtc.getP8LCS();
             String[] p9LCS = dtc.getP9LCS();
             String[] p10LCS = dtc.getP10LCS();
-            lifeCycleCombo.getItems().clear();
+            lifeCycleCombo.getItems().clear();//clear before adding
             
             /* 
              * The following if else sequence captures the correct life cycle steps for the selected project
@@ -231,7 +252,8 @@ public class App extends Application {
         effortCategoryCombo.setMinWidth(200);
         effortCategoryCombo.setOnMouseClicked( event ->{
             DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
-            effortCategoryCombo.getItems().clear();
+            //use dtc to gather information from the definitions tab
+            effortCategoryCombo.getItems().clear();//clear before adding
             effortCategoryCombo.getItems().addAll(dtc.getEffortCategories());
         });
 
@@ -240,7 +262,8 @@ public class App extends Application {
         effortCategoryCombo2.setMinWidth(200);
         effortCategoryCombo2.setOnMouseClicked( event ->{
             DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
-            effortCategoryCombo2.getItems().clear();
+            //use dtc to gather information from the definitions tab
+            effortCategoryCombo2.getItems().clear();//clear before adding
             if(effortCategoryCombo.getValue().equals("Plans")) {
             	effortCategoryCombo2.getItems().addAll(dtc.getPlans());
             }
@@ -254,7 +277,10 @@ public class App extends Application {
             	// TODO add defects - need data from defect console
             }
         });
-
+/********************************************************************************
+ *  						END AUSTIN'S CONTRIBUTION					    	*
+ * 																				*
+ ********************************************************************************/
         Label effortCategoryLabel = new Label("Effort Category:");
         HBox effortCategoryHBox = new HBox(10, effortCategoryLabel, effortCategoryCombo, effortCategoryCombo2);
 
@@ -264,8 +290,52 @@ public class App extends Application {
         Label instruction3 = new Label("3. Press the \"Stop this Activity\" to generate an effort log entry using the attributes above.");
         Button stopActivityBtn = new Button("Stop this Activity");
         stopActivityBtn.setOnAction(event -> {
+            endTime = LocalTime.now();
             if (timeline != null) {
                 timeline.stop();
+            }
+            LocalDate date = LocalDate.now();             
+            DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+            String project = projectCombo.getValue();
+            String lifeCycleStep = lifeCycleCombo.getValue();
+            String effortCategory1 = effortCategoryCombo.getValue();
+            String effortCategory2 = effortCategoryCombo2.getValue();
+            Activity activity = new Activity(project, lifeCycleStep, effortCategory1, effortCategory2, startTime, endTime, date);
+            System.out.println(activity.getProject() +  " " + activity.getLifeCycleStep() + " " 
+            		+ activity.getEffortCategory1() + " " + activity.getEffortCategory2() + " "
+            		+ activity.getStartTime() + " " + activity.getEndTime() + " " + activity.getDate());
+            if(project.equals(dtc.getProjects()[0])) {
+            	p1Activities.add(activity.toString());
+            }
+            else if(project.equals(dtc.getProjects()[1])) {
+            	p2Activities.add(activity.toString());
+            }
+            else if(project.equals(dtc.getProjects()[2])) {
+            	p3Activities.add(activity.toString());
+            }
+            else if(project.equals(dtc.getProjects()[3])) {
+            	p4Activities.add(activity.toString());
+            }
+            else if(project.equals(dtc.getProjects()[4])) {
+            	p5Activities.add(activity.toString());
+            }
+            else if(project.equals(dtc.getProjects()[5])) {
+            	p6Activities.add(activity.toString());
+            }
+            else if(project.equals(dtc.getProjects()[6])) {
+            	p7Activities.add(activity.toString());
+            }
+            else if(project.equals(dtc.getProjects()[7])) {
+            	p8Activities.add(activity.toString());
+            }
+            else if(project.equals(dtc.getProjects()[8])) {
+            	p9Activities.add(activity.toString());
+            }
+            else if(project.equals(dtc.getProjects()[9])) {
+            	p10Activities.add(activity.toString());
+            }
+            else {
+            	System.out.println("ERROR");
             }
             clockStatus.setText("Clock is stopped");
             clockStatus.setStyle("-fx-background-color: red; -fx-padding: 5px; -fx-text-fill: white;");
@@ -389,9 +459,67 @@ public class App extends Application {
         tabPane.getTabs().add(tab3);
 
         //Defect Log Editor Tab
-        Tab tab4 = new Tab("Logs");
-        tab4.setContent(new Label("Content for Another Page"));
+        Tab tab4 = new Tab("Logs");  
+        try {
+            Pane content = tab4_loader.load();
+            tab4.setContent(content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        tab4.setContent(new Label("Content for Another Page"));
         tabPane.getTabs().add(tab4);
+        tab4.setOnSelectionChanged(event -> {
+        	LogsTabController ltc = tab4_loader.getController(); //create controller object
+        	DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+        	for(int i = 0; i < 10; i++) {
+        		String p = dtc.getProjects()[i];
+        		if(p.isBlank()) {
+        			break;
+        		}
+        		else {
+        			if(i == 0) {
+        				ltc.setP1Label(p);
+        			}
+        			else if(i == 1) {
+        				ltc.setP2Label(p);
+        			}
+        			else if(i == 2) {
+        				ltc.setP3Label(p);
+        			}
+        			else if(i == 3) {
+        				ltc.setP4Label(p);
+        			}
+        			else if(i == 4) {
+        				ltc.setP5Label(p);
+        			}
+        			else if(i == 5) {
+        				ltc.setP6Label(p);
+        			}
+        			else if(i == 6) {
+        				ltc.setP7Label(p);
+        			}
+        			else if(i == 7) {
+        				ltc.setP8Label(p);
+        			}
+        			else if(i == 8) {
+        				ltc.setP9Label(p);
+        			}
+        			else {
+        				ltc.setP10Label(p);
+        			}
+        		}
+        	}
+        	ltc.addToP1ELogs(p1Activities);
+        	ltc.addToP2ELogs(p2Activities);
+        	ltc.addToP3ELogs(p3Activities);
+        	ltc.addToP4ELogs(p4Activities);
+        	ltc.addToP5ELogs(p5Activities);
+        	ltc.addToP6ELogs(p6Activities);
+        	ltc.addToP7ELogs(p7Activities);
+        	ltc.addToP8ELogs(p8Activities);
+        	ltc.addToP9ELogs(p9Activities);
+        	ltc.addToP10ELogs(p10Activities);        	
+        });
 
         //Defect Log Editor Tab
         Tab tab5 = new Tab("Definitions");
@@ -474,57 +602,39 @@ public class App extends Application {
             clockStatus.setText(String.format("Clock is running | %02d:%02d:%02d", hours, minutes, seconds));
         }
     }
-    /*
-    private static class ValidatingTextField extends TextField {
-		private final Predicate<String> validation;
+    
+private static class ValidatingTextField extends TextField {
+	private final Predicate<String> validation;
+	private final BooleanProperty isValidProperty;
+	
+	ValidatingTextField(Predicate<String> validation) {
+		this.validation = validation;
+		this.isValidProperty = new SimpleBooleanProperty();
 		
-		ValidatingTextField(Predicate<String> validation){
-				this.validation = validation;
-				
-				textProperty().addListener((o, oldV, newText) -> {
-					isValidProperty.set(validation.test(newText));
-				});
-				
-				isValidProperty.set(validation.test(""));
-		}
-		private BooleanProperty isValidProperty = new SimpleBooleanProperty();
-		
+		textProperty().addListener((o, oldV, newText) -> {
+			isValidProperty.set(validation.test(newText));
+		});
+
+		isValidProperty.set(validation.test(""));
 	}
-    */
-    private static class ValidatingTextField extends TextField {
-        private final Predicate<String> validation;
-        private final BooleanProperty isValidProperty;
 
-        ValidatingTextField(Predicate<String> validation) {
-            this.validation = validation;
-            this.isValidProperty = new SimpleBooleanProperty();
+	public boolean isValid() {
+		return isValidProperty.get();
+	}
 
-            textProperty().addListener((o, oldV, newText) -> {
-                isValidProperty.set(validation.test(newText));
-            });
+	public BooleanProperty isValidProperty() {
+		return isValidProperty;
+	}
+}
 
-            isValidProperty.set(validation.test(""));
-        }
+private ComboBox<String> planningPokerComboBox = new ComboBox<>();
 
-        public boolean isValid() {
-            return isValidProperty.get();
-        }
-
-        public BooleanProperty isValidProperty() {
-            return isValidProperty;
-        }
-    }
-
-    private ComboBox<String> planningPokerComboBox = new ComboBox<>();
-
-    public void updatePlanningPokerBox() {
+	public void updatePlanningPokerBox() {
         planningPokerComboBox.getItems().clear();
         planningPokerComboBox.getItems().addAll(userStories);
     }
     
     public static ArrayList<String> getUserStories() {
     	return userStories;
-    }
-
-    
+    }  
 }
