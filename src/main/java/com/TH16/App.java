@@ -235,7 +235,13 @@ public class App extends Application {
 
         //Defect Console Tab
         Tab tab3 = new Tab("DefectConsole");
-        tab3.setContent(new Label("Content for Another Page"));
+        try {
+            FXMLLoader tab3_loader = new FXMLLoader(getClass().getResource("Defect.fxml"));
+            Pane content = tab3_loader.load();
+            tab3.setContent(content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         tabPane.getTabs().add(tab3);
 
         //Defect Log Editor Tab
