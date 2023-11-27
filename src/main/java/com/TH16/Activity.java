@@ -10,24 +10,26 @@ public class Activity {
 	String lifeCycleStep;
 	String effortCategory1;
 	String effortCategory2;
-	LocalTime startTime;
-	LocalTime endTime;
-	LocalDate date;
+	String startTime;
+	String endTime;
+	String date;
+	int id;
 //	String user;
 //	String userStory;
 //	String[] keyWords;
 	
 	Activity(){	 } //default constructor
 	
-	Activity(String project, String lifeCycleStep, String effortCategory1, String effortCategory2, LocalTime startTime, LocalTime endTime, LocalDate date){
+	Activity(String project, String lifeCycleStep, String effortCategory1, String effortCategory2, LocalTime startTime, LocalTime endTime, LocalDate date, int id){
 //			String user, String userStory, String[] keyWords){
 		this.project = project;
 		this.lifeCycleStep = lifeCycleStep;
 		this.effortCategory1 = effortCategory1;
 		this.effortCategory2 = effortCategory2;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.date = date;
+		this.startTime = startTime.toString().substring(0, 8);
+		this.endTime = endTime.toString().substring(0, 8);
+		this.date = date.toString();
+		this.id = id;
 //		this.user = user;
 //		this.userStory = userStory;
 //		this.keyWords = keyWords;
@@ -46,13 +48,16 @@ public class Activity {
 		return effortCategory2;
 	}
 	public String getStartTime() {
-		return startTime.toString().substring(0, 8);		
+		return startTime;		
 	}
 	public String getEndTime() {
-		return endTime.toString().substring(0, 8);
+		return endTime;
 	}
 	public String getDate() {
-		return date.toString();
+		return date;
+	}
+	public int getId() {
+		return id;
 	}
 //	public String getUser() {
 //		return user;
@@ -76,19 +81,19 @@ public class Activity {
 	public void setEffortCategory2(String effortCategory2) {
 		this.effortCategory2 = effortCategory2;
 	}
-	public void setStartTime(LocalTime startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-	public void setEndTime(LocalTime endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	
 	@Override
 	public String toString() {
-		return (getDate() + " (" + getStartTime() + "-" + getEndTime() + ") " + getLifeCycleStep() + "; " + getEffortCategory1() + "; " + getEffortCategory2());
+		return (getId() + ". " + getDate() + " (" + getStartTime() + "-" + getEndTime() + ") " + getLifeCycleStep() + "; " + getEffortCategory1() + "; " + getEffortCategory2());
 	}
 //	public void setUser(String user) {
 //		this.user = user;

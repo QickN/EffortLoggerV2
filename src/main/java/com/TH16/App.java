@@ -54,22 +54,25 @@ public class App extends Application {
     public ArrayList<String> keywords = new ArrayList<>();
     public String name;
     private static ArrayList<String> userStories = new ArrayList<>();
+    public static int activityID = 0;
 
     public String[] availableKeyWords;
     public int j = 0;
     public boolean flag;
+    FXMLLoader tab2_loader = new FXMLLoader(getClass().getResource("EffortLogEditor.fxml"));
     FXMLLoader tab5_loader = new FXMLLoader(getClass().getResource("DefinitionsTab.fxml"));
     FXMLLoader tab4_loader = new FXMLLoader(getClass().getResource("LogsTab.fxml"));
-    public static ObservableList<String> p1Activities = FXCollections.observableArrayList();
-    public static ObservableList<String> p2Activities = FXCollections.observableArrayList();
-    public static ObservableList<String> p3Activities = FXCollections.observableArrayList();
-    public static ObservableList<String> p4Activities = FXCollections.observableArrayList();
-    public static ObservableList<String> p5Activities = FXCollections.observableArrayList();
-    public static ObservableList<String> p6Activities = FXCollections.observableArrayList();
-    public static ObservableList<String> p7Activities = FXCollections.observableArrayList();
-    public static ObservableList<String> p8Activities = FXCollections.observableArrayList();
-    public static ObservableList<String> p9Activities = FXCollections.observableArrayList();
-    public static ObservableList<String> p10Activities = FXCollections.observableArrayList();
+    public ArrayList<Activity> activities = new ArrayList<>();
+    public static ObservableList<Activity> p1Activities = FXCollections.observableArrayList();
+    public static ObservableList<Activity> p2Activities = FXCollections.observableArrayList();
+    public static ObservableList<Activity> p3Activities = FXCollections.observableArrayList();
+    public static ObservableList<Activity> p4Activities = FXCollections.observableArrayList();
+    public static ObservableList<Activity> p5Activities = FXCollections.observableArrayList();
+    public static ObservableList<Activity> p6Activities = FXCollections.observableArrayList();
+    public static ObservableList<Activity> p7Activities = FXCollections.observableArrayList();
+    public static ObservableList<Activity> p8Activities = FXCollections.observableArrayList();
+    public static ObservableList<Activity> p9Activities = FXCollections.observableArrayList();
+    public static ObservableList<Activity> p10Activities = FXCollections.observableArrayList();
 
     public static void main(String[] args) {
         launch(args);
@@ -296,43 +299,47 @@ public class App extends Application {
             }
             LocalDate date = LocalDate.now();             
             DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+            LogsTabController ltc = tab4_loader.getController();
             String project = projectCombo.getValue();
             String lifeCycleStep = lifeCycleCombo.getValue();
             String effortCategory1 = effortCategoryCombo.getValue();
             String effortCategory2 = effortCategoryCombo2.getValue();
-            Activity activity = new Activity(project, lifeCycleStep, effortCategory1, effortCategory2, startTime, endTime, date);
+            activityID++;
+            Activity activity = new Activity(project, lifeCycleStep, effortCategory1, effortCategory2, startTime, endTime, date, activityID);
             System.out.println(activity.getProject() +  " " + activity.getLifeCycleStep() + " " 
             		+ activity.getEffortCategory1() + " " + activity.getEffortCategory2() + " "
-            		+ activity.getStartTime() + " " + activity.getEndTime() + " " + activity.getDate());
+            		+ activity.getStartTime() + " " + activity.getEndTime() + " " + activity.getDate() + " " + activity.getId());
+            ltc.addActivity(activity);
+            activities.add(activity);
             if(project.equals(dtc.getProjects()[0])) {
-            	p1Activities.add(activity.toString());
+            	p1Activities.add(activity);
             }
             else if(project.equals(dtc.getProjects()[1])) {
-            	p2Activities.add(activity.toString());
+            	p2Activities.add(activity);
             }
             else if(project.equals(dtc.getProjects()[2])) {
-            	p3Activities.add(activity.toString());
+            	p3Activities.add(activity);
             }
             else if(project.equals(dtc.getProjects()[3])) {
-            	p4Activities.add(activity.toString());
+            	p4Activities.add(activity);
             }
             else if(project.equals(dtc.getProjects()[4])) {
-            	p5Activities.add(activity.toString());
+            	p5Activities.add(activity);
             }
             else if(project.equals(dtc.getProjects()[5])) {
-            	p6Activities.add(activity.toString());
+            	p6Activities.add(activity);
             }
             else if(project.equals(dtc.getProjects()[6])) {
-            	p7Activities.add(activity.toString());
+            	p7Activities.add(activity);
             }
             else if(project.equals(dtc.getProjects()[7])) {
-            	p8Activities.add(activity.toString());
+            	p8Activities.add(activity);
             }
             else if(project.equals(dtc.getProjects()[8])) {
-            	p9Activities.add(activity.toString());
+            	p9Activities.add(activity);
             }
             else if(project.equals(dtc.getProjects()[9])) {
-            	p10Activities.add(activity.toString());
+            	p10Activities.add(activity);
             }
             else {
             	System.out.println("ERROR");
@@ -444,12 +451,35 @@ public class App extends Application {
         //Effort Log Editor Tab
         Tab tab2 = new Tab("EffortLogEditor");
         try {
-            FXMLLoader tab2_loader = new FXMLLoader(getClass().getResource("EffortLogEditor.fxml"));
+//            FXMLLoader tab2_loader = new FXMLLoader(getClass().getResource("EffortLogEditor.fxml"));
             Pane content = tab2_loader.load();
             tab2.setContent(content);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        tab2.setOnSelectionChanged(event -> {
+        	DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+        	LogsTabController ltc = tab4_loader.getController();
+        	EffortLogEditorController elec = tab2_loader.getController(); //create controller object
+        	elec.setProjects(dtc.getProjects());
+        	elec.setELogsP1(p1Activities);
+        	elec.setELogsP2(p2Activities);
+        	elec.setELogsP3(p3Activities);
+        	elec.setELogsP4(p4Activities);
+        	elec.setELogsP5(p5Activities);
+        	elec.setELogsP6(p6Activities);
+        	elec.setELogsP7(p7Activities);
+        	elec.setELogsP8(p8Activities);
+        	elec.setELogsP9(p9Activities);
+        	elec.setELogsP10(p10Activities);
+        	elec.setActivities(activities);
+        	elec.setDefinitionsLoader(tab5_loader);
+        	elec.setLogsLoader(tab4_loader);
+        	elec.setDtc(dtc);
+        	elec.setLtc(ltc);
+        	
+        	
+        });
         //tab2.setContent(new Label("Content for Another Page"));
         tabPane.getTabs().add(tab2);
 

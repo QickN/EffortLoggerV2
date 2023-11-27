@@ -1,5 +1,8 @@
 package com.TH16;
 
+import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -67,6 +70,17 @@ public class LogsTabController {
     @FXML
     private Label project9Label;
     
+    public ObservableList<Activity> activities = FXCollections.observableArrayList();
+    
+    public void addActivity(Activity a) {
+    	this.activities.add(a);
+    }
+    
+    public ObservableList<Activity> getActivities() {
+    	return activities;
+    }
+    
+    
     public void setP1Label(String project) {
     	project1Label.setText("Project 1: " + project);
     }
@@ -98,35 +112,65 @@ public class LogsTabController {
     	project10Label.setText("Project 10: " + project);
     }
     
-    public void addToP1ELogs(ObservableList<String> ELogs) {
-    	p1ELogs.setItems(ELogs);
+    public void addToP1ELogs(ObservableList<Activity> ELogs) {
+    	p1ELogs.getItems().clear();
+    	for(int i = 0; i < ELogs.size(); i++) {
+    		p1ELogs.getItems().add(ELogs.get(i).toString());
+    	}
     }
-    public void addToP2ELogs(ObservableList<String> ELogs) {
-    	p2ELogs.setItems(ELogs);
+    public void addToP2ELogs(ObservableList<Activity> ELogs) {
+    	p2ELogs.getItems().clear();
+    	for(int i = 0; i < ELogs.size(); i++) {
+    		p2ELogs.getItems().add(ELogs.get(i).toString());
+    	}
     }
-    public void addToP3ELogs(ObservableList<String> ELogs) {
-    	p3ELogs.setItems(ELogs);
+    public void addToP3ELogs(ObservableList<Activity> ELogs) {
+    	p3ELogs.getItems().clear();
+    	for(int i = 0; i < ELogs.size(); i++) {
+    		p3ELogs.getItems().add(ELogs.get(i).toString());
+    	}
     }
-    public void addToP4ELogs(ObservableList<String> ELogs) {
-    	p4ELogs.setItems(ELogs);
+    public void addToP4ELogs(ObservableList<Activity> ELogs) {
+    	p4ELogs.getItems().clear();
+    	for(int i = 0; i < ELogs.size(); i++) {
+    		p4ELogs.getItems().add(ELogs.get(i).toString());
+    	}
     }
-    public void addToP5ELogs(ObservableList<String> ELogs) {
-    	p5ELogs.setItems(ELogs);
+    public void addToP5ELogs(ObservableList<Activity> ELogs) {
+    	p5ELogs.getItems().clear();
+    	for(int i = 0; i < ELogs.size(); i++) {
+    		p5ELogs.getItems().add(ELogs.get(i).toString());
+    	}
     }
-    public void addToP6ELogs(ObservableList<String> ELogs) {
-    	p6ELogs.setItems(ELogs);
+    public void addToP6ELogs(ObservableList<Activity> ELogs) {
+    	p6ELogs.getItems().clear();
+    	for(int i = 0; i < ELogs.size(); i++) {
+    		p6ELogs.getItems().add(ELogs.get(i).toString());
+    	}
     }
-    public void addToP7ELogs(ObservableList<String> ELogs) {
-    	p7ELogs.setItems(ELogs);
+    public void addToP7ELogs(ObservableList<Activity> ELogs) {
+    	p7ELogs.getItems().clear();
+    	for(int i = 0; i < ELogs.size(); i++) {
+    		p7ELogs.getItems().add(ELogs.get(i).toString());
+    	}
     }
-    public void addToP8ELogs(ObservableList<String> ELogs) {
-    	p8ELogs.setItems(ELogs);
+    public void addToP8ELogs(ObservableList<Activity> ELogs) {
+    	p8ELogs.getItems().clear();
+    	for(int i = 0; i < ELogs.size(); i++) {
+    		p8ELogs.getItems().add(ELogs.get(i).toString());
+    	}
     }
-    public void addToP9ELogs(ObservableList<String> ELogs) {
-    	p9ELogs.setItems(ELogs);
+    public void addToP9ELogs(ObservableList<Activity> ELogs) {
+    	p9ELogs.getItems().clear();
+    	for(int i = 0; i < ELogs.size(); i++) {
+    		p9ELogs.getItems().add(ELogs.get(i).toString());
+    	}
     }
-    public void addToP10ELogs(ObservableList<String> ELogs) {
-    	p10ELogs.setItems(ELogs);
+    public void addToP10ELogs(ObservableList<Activity> ELogs) {
+    	p10ELogs.getItems().clear();
+    	for(int i = 0; i < ELogs.size(); i++) {
+    		p10ELogs.getItems().add(ELogs.get(i).toString());
+    	}
     }
     
     public void addToP1DLogs(ObservableList<String> DLogs) {

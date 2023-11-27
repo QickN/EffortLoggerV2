@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TH16.EffortLogEditorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.TH16.EffortLogEditorController">
    <children>
       <Pane prefHeight="542.0" prefWidth="800.0" style="-fx-border-color: Black;">
          <children>
@@ -142,7 +142,7 @@
                   <Font size="10.0" />
                </font>
             </Button>
-            <ComboBox fx:id="projectSelectBox" layoutX="78.0" layoutY="81.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="23.0" prefWidth="322.0" />
+            <ComboBox fx:id="projectSelectBox" layoutX="78.0" layoutY="81.0" maxHeight="-Infinity" minHeight="-Infinity" onMouseClicked="#setOnMouseClicked" prefHeight="23.0" prefWidth="322.0" />
             <ComboBox fx:id="effortLogSelectBox" layoutX="79.0" layoutY="142.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="23.0" prefWidth="652.0" />
             <ComboBox fx:id="lifeCycleSelectBox" layoutX="78.0" layoutY="256.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="23.0" prefWidth="328.0" />
             <ComboBox fx:id="effortCategorySelectBox" layoutX="78.0" layoutY="297.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="23.0" prefWidth="237.0" />
