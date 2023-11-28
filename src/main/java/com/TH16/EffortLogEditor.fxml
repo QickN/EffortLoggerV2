@@ -17,7 +17,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="477.0" layoutY="79.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="237.0" text="Clear This Effort Log">
+            <Button fx:id="clearLogButton" layoutX="477.0" layoutY="79.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="237.0" text="Clear This Effort Log">
                <font>
                   <Font size="14.0" />
                </font>

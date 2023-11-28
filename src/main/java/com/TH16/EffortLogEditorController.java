@@ -81,6 +81,8 @@ public class EffortLogEditorController implements Initializable{
 	@FXML
 	public Button deleteEntryButton;
 	@FXML
+	public Button clearLogButton;
+	@FXML
 	private Label entryNumberLabel;
 	@FXML
 	private Button proceedToConsoleButton;
@@ -493,6 +495,18 @@ public class EffortLogEditorController implements Initializable{
 		//handled in app.java
 	}
 	
+	
+	@FXML
+	void clearLog(ActionEvent e) {
+		projectSelectBox.getSelectionModel().clearSelection();
+		effortLogSelectBox.getSelectionModel().clearSelection();
+		lifeCycleSelectBox.getSelectionModel().clearSelection();
+		effortCategorySelectBox.getSelectionModel().clearSelection();
+		planSelectBox.getSelectionModel().clearSelection();
+		dateTextField.setText("");
+		startTimeTextField.setText("");
+		stopTimeTextField.setText("");
+	}
 	//event handler function that triggers whenever the user clicks on the Proceed to the Effort Log Console Button
 	@FXML
 	void proceedToConsoleButtonClicked(ActionEvent e) {
@@ -526,6 +540,8 @@ public class EffortLogEditorController implements Initializable{
 		updateEntryButton.setOnAction(event -> updateEntryButtonClicked(null));
 		proceedToConsoleButton.setOnAction(event -> proceedToConsoleButtonClicked(null));
 		deleteEntryButton.setOnAction(event -> deleteEntry(null));
+		clearLogButton.setOnAction(event -> clearLog(null));
+		
 		
 		//the elements that each ComboBox gets filled with
 		projectSelectBox.setItems(projects);
