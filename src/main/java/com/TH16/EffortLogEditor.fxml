@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.TH16.EffortLogEditorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TH16.EffortLogEditorController">
    <children>
       <Pane prefHeight="542.0" prefWidth="800.0" style="-fx-border-color: Black;">
          <children>
@@ -112,7 +112,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="54.0" layoutY="437.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="183.0" text="Delete This Entry">
+            <Button fx:id="deleteEntryButton" layoutX="54.0" layoutY="437.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="183.0" text="Delete This Entry">
                <font>
                   <Font size="10.0" />
                </font>

@@ -75,7 +75,7 @@ public class LogsTabController {
     public void addActivity(Activity a) {
     	this.activities.add(a);
     }
-    
+
     public ObservableList<Activity> getActivities() {
     	return activities;
     }
@@ -117,6 +117,14 @@ public class LogsTabController {
     	for(int i = 0; i < ELogs.size(); i++) {
     		p1ELogs.getItems().add(ELogs.get(i).toString());
     	}
+    }
+    public void removeP1ELog(int index) {
+    	for(int i = 0; i < p1ELogs.getItems().size(); i++) {
+    		if((Integer.parseInt(p1ELogs.getItems().get(i).substring(0, 1))-1) == index) {
+    			p1ELogs.getItems().remove(i);
+    		}
+    	}
+    	p1ELogs.getItems().remove(0);
     }
     public void addToP2ELogs(ObservableList<Activity> ELogs) {
     	p2ELogs.getItems().clear();
@@ -173,34 +181,95 @@ public class LogsTabController {
     	}
     }
     
-    public void addToP1DLogs(ObservableList<String> DLogs) {
-    	p1DLogs.setItems(DLogs);
+    public void addToP1DLogs(Defect DLog) {
+    	p1DLogs.getItems().add(DLog.toString());    	
     }
-    public void addToP2DLogs(ObservableList<String> DLogs) {
-    	p2DLogs.setItems(DLogs);
+    public void addToP2DLogs(Defect DLog) {
+    	p2DLogs.getItems().add(DLog.toString());
     }
-    public void addToP3DLogs(ObservableList<String> DLogs) {
-    	p3DLogs.setItems(DLogs);
+    public void addToP3DLogs(Defect DLog) {
+    	p3DLogs.getItems().add(DLog.toString());
     }
-    public void addToP4DLogs(ObservableList<String> DLogs) {
-    	p4DLogs.setItems(DLogs);
+    public void addToP4DLogs(Defect DLog) {
+    	p4DLogs.getItems().add(DLog.toString());
     }
-    public void addToP5DLogs(ObservableList<String> DLogs) {
-    	p5DLogs.setItems(DLogs);
+    public void addToP5DLogs(Defect DLog) {
+    	p5DLogs.getItems().add(DLog.toString());
     }
-    public void addToP6DLogs(ObservableList<String> DLogs) {
-    	p6DLogs.setItems(DLogs);
+    public void addToP6DLogs(Defect DLog) {
+    	p6DLogs.getItems().add(DLog.toString());
     }
-    public void addToP7DLogs(ObservableList<String> DLogs) {
-    	p7DLogs.setItems(DLogs);
+    public void addToP7DLogs(Defect DLog) {
+    	p7DLogs.getItems().add(DLog.toString());
     }
-    public void addToP8DLogs(ObservableList<String> DLogs) {
-    	p8DLogs.setItems(DLogs);
+    public void addToP8DLogs(Defect DLog) {
+    	p8DLogs.getItems().add(DLog.toString());
     }
-    public void addToP9DLogs(ObservableList<String> DLogs) {
-    	p9DLogs.setItems(DLogs);
+    public void addToP9DLogs(Defect DLog) {
+    	p9DLogs.getItems().add(DLog.toString());
     }
-    public void addToP10DLogs(ObservableList<String> DLogs) {
-    	p10DLogs.setItems(DLogs);
+    public void addToP10DLogs(Defect DLog) {
+    	p10DLogs.getItems().add(DLog.toString());
+    }
+    
+    public void setP1DLogs(ObservableList<Defect> DLogs) {
+    	p1DLogs.getItems().clear();
+    	for(int i = 0; i < DLogs.size(); i++) {
+    		p1DLogs.getItems().add(DLogs.get(i).toString());
+    	}
+    }
+    public void setP2DLogs(ObservableList<Defect> DLogs) {
+    	p2DLogs.getItems().clear();
+    	for(int i = 0; i < DLogs.size(); i++) {
+    		p2DLogs.getItems().add(DLogs.get(i).toString());
+    	}
+    }
+    public void setP3DLogs(ObservableList<Defect> DLogs) {
+    	p3DLogs.getItems().clear();
+    	for(int i = 0; i < DLogs.size(); i++) {
+    		p3DLogs.getItems().add(DLogs.get(i).toString());
+    	}
+    }
+    public void setP4DLogs(ObservableList<Defect> DLogs) {
+    	p4DLogs.getItems().clear();
+    	for(int i = 0; i < DLogs.size(); i++) {
+    		p4DLogs.getItems().add(DLogs.get(i).toString());
+    	}
+    }
+    public void setP5DLogs(ObservableList<Defect> DLogs) {
+    	p5DLogs.getItems().clear();
+    	for(int i = 0; i < DLogs.size(); i++) {
+    		p5DLogs.getItems().add(DLogs.get(i).toString());
+    	}
+    }
+    public void setP6DLogs(ObservableList<Defect> DLogs) {
+    	p6DLogs.getItems().clear();
+    	for(int i = 0; i < DLogs.size(); i++) {
+    		p6DLogs.getItems().add(DLogs.get(i).toString());
+    	}
+    }
+    public void setP7DLogs(ObservableList<Defect> DLogs) {
+    	p7DLogs.getItems().clear();
+    	for(int i = 0; i < DLogs.size(); i++) {
+    		p7DLogs.getItems().add(DLogs.get(i).toString());
+    	}
+    }
+    public void setP8DLogs(ObservableList<Defect> DLogs) {
+    	p8DLogs.getItems().clear();
+    	for(int i = 0; i < DLogs.size(); i++) {
+    		p8DLogs.getItems().add(DLogs.get(i).toString());
+    	}
+    }
+    public void setP9DLogs(ObservableList<Defect> DLogs) {
+    	p9DLogs.getItems().clear();
+    	for(int i = 0; i < DLogs.size(); i++) {
+    		p9DLogs.getItems().add(DLogs.get(i).toString());
+    	}
+    }
+    public void setP10DLogs(ObservableList<Defect> DLogs) {
+    	p10DLogs.getItems().clear();
+    	for(int i = 0; i < DLogs.size(); i++) {
+    		p10DLogs.getItems().add(DLogs.get(i).toString());
+    	}
     }
 }

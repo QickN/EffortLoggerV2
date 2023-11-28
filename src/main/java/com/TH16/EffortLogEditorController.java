@@ -79,6 +79,8 @@ public class EffortLogEditorController implements Initializable{
 	@FXML
 	private Button updateEntryButton;
 	@FXML
+	private Button deleteEntryButton;
+	@FXML
 	private Label entryNumberLabel;
 	@FXML
 	private Button proceedToConsoleButton;
@@ -448,6 +450,33 @@ public class EffortLogEditorController implements Initializable{
         if(selectedActivity.getProject().equals(dtc.getProjects()[0])) {
         	ltc.addToP1ELogs(loggedActivities);
         }
+        else if(selectedActivity.getProject().equals(dtc.getProjects()[1])) {
+        	ltc.addToP2ELogs(loggedActivities);
+        }
+        else if(selectedActivity.getProject().equals(dtc.getProjects()[2])) {
+        	ltc.addToP3ELogs(loggedActivities);
+        }
+        else if(selectedActivity.getProject().equals(dtc.getProjects()[3])) {
+        	ltc.addToP4ELogs(loggedActivities);
+        }
+        else if(selectedActivity.getProject().equals(dtc.getProjects()[4])) {
+        	ltc.addToP5ELogs(loggedActivities);
+        }
+        else if(selectedActivity.getProject().equals(dtc.getProjects()[5])) {
+        	ltc.addToP6ELogs(loggedActivities);
+        }
+        else if(selectedActivity.getProject().equals(dtc.getProjects()[6])) {
+        	ltc.addToP7ELogs(loggedActivities);
+        }
+        else if(selectedActivity.getProject().equals(dtc.getProjects()[7])) {
+        	ltc.addToP8ELogs(loggedActivities);
+        }
+        else if(selectedActivity.getProject().equals(dtc.getProjects()[8])) {
+        	ltc.addToP9ELogs(loggedActivities);
+        }
+        else if(selectedActivity.getProject().equals(dtc.getProjects()[9])) {
+        	ltc.addToP10ELogs(loggedActivities);
+        }
 		
 		String selectedString = getSelectedItem(effortLogSelectBox);
 		
@@ -457,6 +486,70 @@ public class EffortLogEditorController implements Initializable{
 		
 //		effortLogs.set((Integer.parseInt(number)) -1, newLog);
 		effortLogSelectBox.setValue(newLog);
+	}
+	
+	@FXML
+	void deleteEntry(ActionEvent e) {
+		String selectedActivityID = getSelectedItem(effortLogSelectBox).substring(0, 1);
+//        ltc.removeActivity(Integer.parseInt(selectedActivityID)-1);
+        if(getSelectedItem(projectSelectBox).equals(projects.get(0))) {
+			ltc.removeP1ELog(Integer.parseInt(selectedActivityID)-1);
+			System.out.println("bruh");
+		}
+		
+		
+		else if(getSelectedItem(projectSelectBox).equals(projects.get(1))) {
+			for(int i = 0; i < effortLogsP2.size(); i++) {
+				effortLogSelectBox.getItems().add(effortLogsP2.get(i).toString());
+			}
+
+		}
+		else if(getSelectedItem(projectSelectBox).equals(projects.get(2))) {
+			for(int i = 0; i < effortLogsP3.size(); i++) {
+				effortLogSelectBox.getItems().add(effortLogsP3.get(i).toString());
+			}
+
+		}
+		else if(getSelectedItem(projectSelectBox).equals(projects.get(3))) {
+			for(int i = 0; i < effortLogsP4.size(); i++) {
+				effortLogSelectBox.getItems().add(effortLogsP4.get(i).toString());
+			}
+
+		}
+		else if(getSelectedItem(projectSelectBox).equals(projects.get(4))) {
+			for(int i = 0; i < effortLogsP5.size(); i++) {
+				effortLogSelectBox.getItems().add(effortLogsP5.get(i).toString());
+			}
+		}
+		else if(getSelectedItem(projectSelectBox).equals(projects.get(5))) {
+			for(int i = 0; i < effortLogsP6.size(); i++) {
+				effortLogSelectBox.getItems().add(effortLogsP6.get(i).toString());
+			}
+		}
+		else if(getSelectedItem(projectSelectBox).equals(projects.get(6))) {
+			for(int i = 0; i < effortLogsP7.size(); i++) {
+				effortLogSelectBox.getItems().add(effortLogsP7.get(i).toString());
+			}
+		}
+		else if(getSelectedItem(projectSelectBox).equals(projects.get(7))) {
+			for(int i = 0; i < effortLogsP8.size(); i++) {
+				effortLogSelectBox.getItems().add(effortLogsP8.get(i).toString());
+			}
+		}
+		else if(getSelectedItem(projectSelectBox).equals(projects.get(8))) {
+			for(int i = 0; i < effortLogsP9.size(); i++) {
+				effortLogSelectBox.getItems().add(effortLogsP9.get(i).toString());
+			}
+		}
+		else if(getSelectedItem(projectSelectBox).equals(projects.get(9))) {
+			for(int i = 0; i < effortLogsP10.size(); i++) {
+				effortLogSelectBox.getItems().add(effortLogsP10.get(i).toString());
+			}
+		}
+        
+//		ObservableList<Activity> loggedActivities = ltc.getActivities();
+//        ltc.getActivities().remove(Integer.parseInt(id)-1);
+		
 	}
 	
 	//event handler function that triggers whenever the user clicks on the Proceed to the Effort Log Console Button
@@ -481,6 +574,7 @@ public class EffortLogEditorController implements Initializable{
 		projectSelectBox.setOnAction(event -> projectSelected(null) );
 		projectSelectBox.setOnMouseClicked(event -> projectSelected(null) );
 		effortLogSelectBox.setOnAction(event -> effortLogSelected(null));
+		effortLogSelectBox.setOnMouseClicked(event -> projectSelected(null) );
 		dateTextField.textProperty().addListener((observable, oldValue, newValue) -> fieldChanged(null));
 		startTimeTextField.textProperty().addListener((observable, oldValue, newValue) -> fieldChanged(null));
 		stopTimeTextField.textProperty().addListener((observable, oldValue, newValue) -> fieldChanged(null));
@@ -490,6 +584,7 @@ public class EffortLogEditorController implements Initializable{
 		planSelectBox.setOnAction(event -> fieldChanged(null));
 		updateEntryButton.setOnAction(event -> updateEntryButtonClicked(null));
 		proceedToConsoleButton.setOnAction(event -> proceedToConsoleButtonClicked(null));
+		deleteEntryButton.setOnAction(event -> deleteEntry(null));
 		
 		//the elements that each ComboBox gets filled with
 		projectSelectBox.setItems(projects);

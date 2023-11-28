@@ -62,6 +62,7 @@ public class App extends Application {
     FXMLLoader tab2_loader = new FXMLLoader(getClass().getResource("EffortLogEditor.fxml"));
     FXMLLoader tab5_loader = new FXMLLoader(getClass().getResource("DefinitionsTab.fxml"));
     FXMLLoader tab4_loader = new FXMLLoader(getClass().getResource("LogsTab.fxml"));
+    FXMLLoader tab3_loader = new FXMLLoader(getClass().getResource("Defect.fxml"));
     public ArrayList<Activity> activities = new ArrayList<>();
     public static ObservableList<Activity> p1Activities = FXCollections.observableArrayList();
     public static ObservableList<Activity> p2Activities = FXCollections.observableArrayList();
@@ -265,6 +266,7 @@ public class App extends Application {
         effortCategoryCombo2.setMinWidth(200);
         effortCategoryCombo2.setOnMouseClicked( event ->{
             DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+            DefectController dc = tab3_loader.getController();
             //use dtc to gather information from the definitions tab
             effortCategoryCombo2.getItems().clear();//clear before adding
             if(effortCategoryCombo.getValue().equals("Plans")) {
@@ -277,7 +279,7 @@ public class App extends Application {
             	effortCategoryCombo2.getItems().addAll(dtc.getInterruptions());
             }
             else if(effortCategoryCombo.getValue().equals("Defects")) {
-            	// TODO add defects - need data from defect console
+            	effortCategoryCombo2.getItems().addAll(dc.getDefects());
             }
         });
 /********************************************************************************
@@ -462,6 +464,7 @@ public class App extends Application {
         	LogsTabController ltc = tab4_loader.getController();
         	EffortLogEditorController elec = tab2_loader.getController(); //create controller object
         	elec.setProjects(dtc.getProjects());
+        	
         	elec.setELogsP1(p1Activities);
         	elec.setELogsP2(p2Activities);
         	elec.setELogsP3(p3Activities);
@@ -486,13 +489,39 @@ public class App extends Application {
         //Defect Console Tab
         Tab tab3 = new Tab("DefectConsole");
         try {
-            FXMLLoader tab3_loader = new FXMLLoader(getClass().getResource("Defect.fxml"));
+//            FXMLLoader tab3_loader = new FXMLLoader(getClass().getResource("Defect.fxml"));
             Pane content = tab3_loader.load();
             tab3.setContent(content);
         } catch (Exception e) {
             e.printStackTrace();
         }
         tabPane.getTabs().add(tab3);
+        tab3.setOnSelectionChanged(event -> {
+        	DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+        	LogsTabController ltc = tab4_loader.getController();
+        	EffortLogEditorController elec = tab2_loader.getController(); //create controller object
+        	DefectController dc = tab3_loader.getController();
+        	dc.setProjects(dtc.getProjects());
+        	
+        	System.out.print("hello\n");
+//        	elec.setELogsP1(p1Activities);
+//        	elec.setELogsP2(p2Activities);
+//        	elec.setELogsP3(p3Activities);
+//        	elec.setELogsP4(p4Activities);
+//        	elec.setELogsP5(p5Activities);
+//        	elec.setELogsP6(p6Activities);
+//        	elec.setELogsP7(p7Activities);
+//        	elec.setELogsP8(p8Activities);
+//        	elec.setELogsP9(p9Activities);
+//        	elec.setELogsP10(p10Activities);
+//        	elec.setActivities(activities);
+        	dc.setDefinitionsLoader(tab5_loader);
+        	dc.setLogsLoader(tab4_loader);
+        	dc.setDtc(dtc);
+        	dc.setLtc(ltc);
+        	
+        	
+        });
 
         //Defect Log Editor Tab
         Tab tab4 = new Tab("Logs");  
@@ -507,6 +536,8 @@ public class App extends Application {
         tab4.setOnSelectionChanged(event -> {
         	LogsTabController ltc = tab4_loader.getController(); //create controller object
         	DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
+        	DefectController dc = tab3_loader.getController();
+        	
         	for(int i = 0; i < 10; i++) {
         		String p = dtc.getProjects()[i];
         		if(p.isBlank()) {
