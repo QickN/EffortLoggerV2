@@ -57,9 +57,9 @@ public class EffortLogEditorController implements Initializable{
 	
 	//variables related to elements in the UI
 	@FXML
-	private ComboBox<String> projectSelectBox;
+	public ComboBox<String> projectSelectBox;
 	@FXML
-	private ComboBox<String> effortLogSelectBox;
+	public ComboBox<String> effortLogSelectBox;
 	@FXML
 	private TextField dateTextField;
 	@FXML
@@ -69,7 +69,7 @@ public class EffortLogEditorController implements Initializable{
 	@FXML
 	private ComboBox<String> lifeCycleSelectBox;
 	@FXML
-	private ComboBox<String> effortCategorySelectBox;
+	public ComboBox<String> effortCategorySelectBox;
 	@FXML
 	private ComboBox<String> planSelectBox;
 	@FXML
@@ -79,7 +79,7 @@ public class EffortLogEditorController implements Initializable{
 	@FXML
 	private Button updateEntryButton;
 	@FXML
-	private Button deleteEntryButton;
+	public Button deleteEntryButton;
 	@FXML
 	private Label entryNumberLabel;
 	@FXML
@@ -490,66 +490,7 @@ public class EffortLogEditorController implements Initializable{
 	
 	@FXML
 	void deleteEntry(ActionEvent e) {
-		String selectedActivityID = getSelectedItem(effortLogSelectBox).substring(0, 1);
-//        ltc.removeActivity(Integer.parseInt(selectedActivityID)-1);
-        if(getSelectedItem(projectSelectBox).equals(projects.get(0))) {
-			ltc.removeP1ELog(Integer.parseInt(selectedActivityID)-1);
-			System.out.println("bruh");
-		}
-		
-		
-		else if(getSelectedItem(projectSelectBox).equals(projects.get(1))) {
-			for(int i = 0; i < effortLogsP2.size(); i++) {
-				effortLogSelectBox.getItems().add(effortLogsP2.get(i).toString());
-			}
-
-		}
-		else if(getSelectedItem(projectSelectBox).equals(projects.get(2))) {
-			for(int i = 0; i < effortLogsP3.size(); i++) {
-				effortLogSelectBox.getItems().add(effortLogsP3.get(i).toString());
-			}
-
-		}
-		else if(getSelectedItem(projectSelectBox).equals(projects.get(3))) {
-			for(int i = 0; i < effortLogsP4.size(); i++) {
-				effortLogSelectBox.getItems().add(effortLogsP4.get(i).toString());
-			}
-
-		}
-		else if(getSelectedItem(projectSelectBox).equals(projects.get(4))) {
-			for(int i = 0; i < effortLogsP5.size(); i++) {
-				effortLogSelectBox.getItems().add(effortLogsP5.get(i).toString());
-			}
-		}
-		else if(getSelectedItem(projectSelectBox).equals(projects.get(5))) {
-			for(int i = 0; i < effortLogsP6.size(); i++) {
-				effortLogSelectBox.getItems().add(effortLogsP6.get(i).toString());
-			}
-		}
-		else if(getSelectedItem(projectSelectBox).equals(projects.get(6))) {
-			for(int i = 0; i < effortLogsP7.size(); i++) {
-				effortLogSelectBox.getItems().add(effortLogsP7.get(i).toString());
-			}
-		}
-		else if(getSelectedItem(projectSelectBox).equals(projects.get(7))) {
-			for(int i = 0; i < effortLogsP8.size(); i++) {
-				effortLogSelectBox.getItems().add(effortLogsP8.get(i).toString());
-			}
-		}
-		else if(getSelectedItem(projectSelectBox).equals(projects.get(8))) {
-			for(int i = 0; i < effortLogsP9.size(); i++) {
-				effortLogSelectBox.getItems().add(effortLogsP9.get(i).toString());
-			}
-		}
-		else if(getSelectedItem(projectSelectBox).equals(projects.get(9))) {
-			for(int i = 0; i < effortLogsP10.size(); i++) {
-				effortLogSelectBox.getItems().add(effortLogsP10.get(i).toString());
-			}
-		}
-        
-//		ObservableList<Activity> loggedActivities = ltc.getActivities();
-//        ltc.getActivities().remove(Integer.parseInt(id)-1);
-		
+		//handled in app.java
 	}
 	
 	//event handler function that triggers whenever the user clicks on the Proceed to the Effort Log Console Button
@@ -615,7 +556,7 @@ public class EffortLogEditorController implements Initializable{
 	}
 	
 	//function that returns which item is currently selected in a ComboBox
-	private String getSelectedItem(ComboBox box) {
+	public String getSelectedItem(ComboBox box) {
 		try {
 			return box.getSelectionModel().getSelectedItem().toString();
 		}

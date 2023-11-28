@@ -290,6 +290,7 @@ public class App extends Application {
         HBox effortCategoryHBox = new HBox(10, effortCategoryLabel, effortCategoryCombo, effortCategoryCombo2);
 
         VBox comboBoxVBox = new VBox(10, projectHBox, lifeCycleHBox, effortCategoryHBox);
+
     
         //Added reliability 
         Label instruction3 = new Label("3. Press the \"Stop this Activity\" to generate an effort log entry using the attributes above.");
@@ -463,6 +464,55 @@ public class App extends Application {
         	DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
         	LogsTabController ltc = tab4_loader.getController();
         	EffortLogEditorController elec = tab2_loader.getController(); //create controller object
+            elec.deleteEntryButton.setOnAction(e -> {
+            	elec.deleteEntryButton.setOnMouseClicked(ev ->{
+            		elec.projectSelected(null);
+            	});
+            	String selectedActivityID = elec.getSelectedItem(elec.effortLogSelectBox).substring(0, 1);
+//              ltc.removeActivity(Integer.parseInt(selectedActivityID)-1);
+            	int index = Integer.parseInt(selectedActivityID)-1;
+            	if(elec.getSelectedItem(elec.projectSelectBox).equals(elec.projects.get(0))) {
+            		elec.effortLogsP1.remove(activities.get(index));
+      			}
+            	else if(elec.getSelectedItem(elec.projectSelectBox).equals(elec.projects.get(1))) {
+            		elec.effortLogsP2.remove(activities.get(index));
+        		}
+        		else if(elec.getSelectedItem(elec.projectSelectBox).equals(elec.projects.get(2))) {
+        			elec.effortLogsP3.remove(activities.get(index));
+        		}
+        		else if(elec.getSelectedItem(elec.projectSelectBox).equals(elec.projects.get(3))) {
+        			elec.effortLogsP4.remove(activities.get(index));
+        		}
+        		else if(elec.getSelectedItem(elec.projectSelectBox).equals(elec.projects.get(4))) {
+        			elec.effortLogsP5.remove(activities.get(index));
+        		}
+        		else if(elec.getSelectedItem(elec.projectSelectBox).equals(elec.projects.get(5))) {
+        			elec.effortLogsP6.remove(activities.get(index));
+        		}
+        		else if(elec.getSelectedItem(elec.projectSelectBox).equals(elec.projects.get(6))) {
+        			elec.effortLogsP7.remove(activities.get(index));
+        		}
+        		else if(elec.getSelectedItem(elec.projectSelectBox).equals(elec.projects.get(7))) {
+        			elec.effortLogsP8.remove(activities.get(index));
+        		}
+        		else if(elec.getSelectedItem(elec.projectSelectBox).equals(elec.projects.get(8))) {
+        			elec.effortLogsP9.remove(activities.get(index));
+        		}
+        		else if(elec.getSelectedItem(elec.projectSelectBox).equals(elec.projects.get(9))) {
+        			elec.effortLogsP10.remove(activities.get(index));
+        		}
+              else {
+              	System.out.println("ERROR");
+              }
+//              activities.remove(index);
+            String id = elec.getSelectedItem(elec.effortLogSelectBox).substring(0, 1);
+      		for(int i = 0; i < activities.size(); i++) {
+      			if(i > Integer.parseInt(id)-1)
+      				activities.get(i).setId(activities.get(i).getId() - 1);
+      		}
+      		activities.remove(index);
+      		activityID--;
+            });
         	elec.setProjects(dtc.getProjects());
         	
         	elec.setELogsP1(p1Activities);
@@ -499,7 +549,7 @@ public class App extends Application {
         tab3.setOnSelectionChanged(event -> {
         	DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
         	LogsTabController ltc = tab4_loader.getController();
-        	EffortLogEditorController elec = tab2_loader.getController(); //create controller object
+//        	EffortLogEditorController elec2 = tab2_loader.getController(); //create controller object
         	DefectController dc = tab3_loader.getController();
         	dc.setProjects(dtc.getProjects());
         	

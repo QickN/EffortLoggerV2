@@ -90,6 +90,9 @@ public class Activity {
 	public void setDate(String date) {
 		this.date = date;
 	}
+	public void setId(int i) {
+		this.id = i;
+	}
 	
 	@Override
 	public String toString() {

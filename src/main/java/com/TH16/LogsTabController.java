@@ -76,6 +76,7 @@ public class LogsTabController {
     	this.activities.add(a);
     }
 
+
     public ObservableList<Activity> getActivities() {
     	return activities;
     }
@@ -118,14 +119,7 @@ public class LogsTabController {
     		p1ELogs.getItems().add(ELogs.get(i).toString());
     	}
     }
-    public void removeP1ELog(int index) {
-    	for(int i = 0; i < p1ELogs.getItems().size(); i++) {
-    		if((Integer.parseInt(p1ELogs.getItems().get(i).substring(0, 1))-1) == index) {
-    			p1ELogs.getItems().remove(i);
-    		}
-    	}
-    	p1ELogs.getItems().remove(0);
-    }
+
     public void addToP2ELogs(ObservableList<Activity> ELogs) {
     	p2ELogs.getItems().clear();
     	for(int i = 0; i < ELogs.size(); i++) {
