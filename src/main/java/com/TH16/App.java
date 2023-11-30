@@ -90,7 +90,7 @@ public class App extends Application {
         title.setFont(Font.font("Arial", FontWeight.BOLD, 24));
         clockStatus = new Label("Clock is stopped");
         clockStatus.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        clockStatus.setStyle("-fx-background-color: red; -fx-padding: 5px; -fx-text-fill: white;");
+        clockStatus.setStyle("-fx-background-color: red; -fx-padding: 5px 250px; -fx-text-fill: white;");
         VBox topBox = new VBox(10, title, clockStatus);
         topBox.setAlignment(Pos.CENTER);
         topBox.setSpacing(10);
@@ -100,14 +100,24 @@ public class App extends Application {
         Label instruction1 = new Label("1. When you start a new activity, press the \"Start an Activity\" button.");
         Button startActivityBtn = new Button("Start an Activity");
         instruction1.setFont(Font.font("System", FontWeight.BOLD, 15));
+        
+        Button defectLogConsoleBtn = new Button("Proceed to Defect Log Console");
+        //Change Between Scenes
+
+        
+
+        
+
+     
+        
 
         //Add center content to screen and format
         HBox instructionAndButtonHBox = new HBox(10, instruction1);
-        instructionAndButtonHBox.setPadding(new Insets(0, 0, 10, 10)); // Add padding as needed
+        instructionAndButtonHBox.setPadding(new Insets(0, 0, 10, 10));
         instructionAndButtonHBox.setAlignment(Pos.CENTER_LEFT);
-        HBox instructionAndButtonHBox2 = new HBox(10, startActivityBtn);
-        instructionAndButtonHBox2.setPadding(new Insets(0, 0, 10, 10)); // Add padding as needed
-        instructionAndButtonHBox2.setAlignment(Pos.CENTER_LEFT);
+        HBox instructionAndButtonHBox2 = new HBox(175, startActivityBtn, defectLogConsoleBtn);
+        instructionAndButtonHBox2.setPadding(new Insets(0, 0, 10, 10));
+        instructionAndButtonHBox2.setAlignment(Pos.CENTER);
 
         //Start Activity Button
         startActivityBtn.setOnAction(event -> {
@@ -119,13 +129,16 @@ public class App extends Application {
             timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(1), e -> updateTimer()));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
-            clockStatus.setStyle("-fx-background-color: green; -fx-padding: 5px; -fx-text-fill: white;");
+            clockStatus.setStyle("-fx-background-color: green; -fx-padding: 5px 250px; -fx-text-fill: white;");
         });
         
 
         //Added more vboxes to change the layout
         VBox centerTopBox = new VBox(10, instructionAndButtonHBox, instructionAndButtonHBox2);
         Label instruction2 = new Label("2. Select the project, life cycle step, effort category, and deliverable from the following lists:");
+        instruction2.setPadding(new Insets(0, 0, 10, 10));
+
+        instruction2.setFont(Font.font("System", FontWeight.BOLD, 15));
         //Added some comboboxes for the middle of the screen
         ComboBox<String> projectCombo = new ComboBox<>();
 /********************************************************************************
@@ -142,6 +155,7 @@ public class App extends Application {
         
         Label projectLabel = new Label("Project:");
         HBox projectHBox = new HBox(10, projectLabel, projectCombo);
+        projectHBox.setAlignment(Pos.CENTER);
         
         // Adding more ComboBoxes for Life Cycle Step, Effort Category, etc.
         ComboBox<String> lifeCycleCombo = new ComboBox<>();
@@ -250,6 +264,8 @@ public class App extends Application {
         
         Label lifeCycleLabel = new Label("Life Cycle Step:");
         HBox lifeCycleHBox = new HBox(10, lifeCycleLabel, lifeCycleCombo);
+        lifeCycleHBox.setAlignment(Pos.CENTER);
+
 
         //Adding more ComboBoxes for Effort Category
         ComboBox<String> effortCategoryCombo = new ComboBox<>();
@@ -288,13 +304,18 @@ public class App extends Application {
  ********************************************************************************/
         Label effortCategoryLabel = new Label("Effort Category:");
         HBox effortCategoryHBox = new HBox(10, effortCategoryLabel, effortCategoryCombo, effortCategoryCombo2);
+        effortCategoryHBox.setAlignment(Pos.CENTER);
 
         VBox comboBoxVBox = new VBox(10, projectHBox, lifeCycleHBox, effortCategoryHBox);
 
     
         //Added reliability 
         Label instruction3 = new Label("3. Press the \"Stop this Activity\" to generate an effort log entry using the attributes above.");
+        instruction3.setPadding(new Insets(0, 0, 10, 10));
+
+        instruction3.setFont(Font.font("System", FontWeight.BOLD, 15));
         Button stopActivityBtn = new Button("Stop this Activity");
+        Button effortLogBtn = new Button("Procced to Effort Log Editor");
         stopActivityBtn.setOnAction(event -> {
             endTime = LocalTime.now();
             if (timeline != null) {
@@ -348,21 +369,25 @@ public class App extends Application {
             	System.out.println("ERROR");
             }
             clockStatus.setText("Clock is stopped");
-            clockStatus.setStyle("-fx-background-color: red; -fx-padding: 5px; -fx-text-fill: white;");
+            clockStatus.setStyle("-fx-background-color: red; -fx-padding: 5px 250px; -fx-text-fill: white;");
             // reset startTime
             startTime = null;
         });
         
-        
-        VBox centerBottomBox = new VBox(10, instruction3, stopActivityBtn);
+        HBox hboxSec3 = new HBox(175, stopActivityBtn, effortLogBtn);
+        hboxSec3.setAlignment(Pos.CENTER);
+        VBox centerBottomBox = new VBox(10, instruction3, hboxSec3);
     
         // Bottom content
         Label instruction4 = new Label("4. Unless you are done for the day, it is best to perform steps 1 and 2 above before resuming work.");
-        Button effortLogButton = new Button("Effort Log Editor");
-        Button defectLogButton = new Button("Defect Log Console");
-        Button DefinitionsButton = new Button("Definitions");
-        Button effortAndDefectLogsConsole = new Button("Effort and Defect Logs Console");
+        instruction4.setPadding(new Insets(0, 0, 10, 10));
+
+        instruction4.setFont(Font.font("System", FontWeight.BOLD, 15));
+
         Label planningPokerLabel = new Label("5. Planning Poker Input");
+        planningPokerLabel.setPadding(new Insets(0, 0, 0, 10));
+
+        planningPokerLabel.setFont(Font.font("System", FontWeight.BOLD, 15));
         Label userStoryName = new Label("Name of user: ");
 
         var storyNameInput = new ValidatingTextField(input -> (input.matches("[a-zA-Z.,-/ ]+")) && (input.length() <= 50));
@@ -415,11 +440,14 @@ public class App extends Application {
         Button validation = new Button("Validate Credentials");
         
 
-        HBox bottomButtonsHBox = new HBox(10, effortLogButton, defectLogButton, DefinitionsButton, effortAndDefectLogsConsole);
-        HBox bottomButtonsHBox2 = new HBox(10, userStoryName, storyNameInput,submitUserStory, userStoryText, storyText, submitStory);
-        HBox bottomButtonsHBox3 = new HBox(10, keyWordsText, keyWordsInput, submitKeyWords, validation);
+        HBox bottomButtonsHBox2 = new HBox(10, userStoryName, storyNameInput, userStoryText, storyText, submitStory);
+        bottomButtonsHBox2.setAlignment(Pos.CENTER);
 
-        VBox bottomBox = new VBox(instruction4, bottomButtonsHBox, planningPokerLabel, bottomButtonsHBox2);
+        HBox bottomButtonsHBox3 = new HBox(10, keyWordsText, keyWordsInput, submitKeyWords, validation);
+        bottomButtonsHBox3.setAlignment(Pos.CENTER);
+
+
+        VBox bottomBox = new VBox(instruction4, planningPokerLabel, bottomButtonsHBox2);
         bottomBox.setSpacing(10);
         root.setBottom(bottomBox);
 
@@ -682,24 +710,13 @@ public class App extends Application {
             e.printStackTrace();
         }
         tabPane.getTabs().add(tab8);
-
-        //Change Between Scenes
-        effortLogButton.setOnAction(event -> {
-            tabPane.getSelectionModel().select(tab2); 
-        });
         
-        defectLogButton.setOnAction(event -> {
+        defectLogConsoleBtn.setOnAction(event -> {
             tabPane.getSelectionModel().select(tab3); 
         });
-        
-        DefinitionsButton.setOnAction(event -> {
-            tabPane.getSelectionModel().select(tab5);
+        effortLogBtn.setOnAction(event -> {
+            tabPane.getSelectionModel().select(tab3); 
         });
-        
-        effortAndDefectLogsConsole.setOnAction(event -> {
-            tabPane.getSelectionModel().select(tab4); 
-        });
-        
         
 
         //Show scene on page
