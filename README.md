@@ -1,3 +1,2 @@
 # EffortLoggerV2
-# OUR NAMES
-# NICHOLAS QUAM
+
