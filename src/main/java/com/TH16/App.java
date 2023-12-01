@@ -467,15 +467,6 @@ public class App extends Application {
 
         //Effort Logger Tab
         Tab tab1 = new Tab("Effort Logger");
-        /*
-        try {
-            FXMLLoader tab1_loader = new FXMLLoader(getClass().getResource("EffortConsole.fxml"));
-            Pane content = tab1_loader.load();
-            tab1.setContent(content);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
         tab1.setContent(root);
         tabPane.getTabs().add(tab1);
 
@@ -577,22 +568,9 @@ public class App extends Application {
         tab3.setOnSelectionChanged(event -> {
         	DefinitionsTabController dtc = tab5_loader.getController(); //create controller object
         	LogsTabController ltc = tab4_loader.getController();
-//        	EffortLogEditorController elec2 = tab2_loader.getController(); //create controller object
         	DefectController dc = tab3_loader.getController();
         	dc.setProjects(dtc.getProjects());
-        	
-        	System.out.print("hello\n");
-//        	elec.setELogsP1(p1Activities);
-//        	elec.setELogsP2(p2Activities);
-//        	elec.setELogsP3(p3Activities);
-//        	elec.setELogsP4(p4Activities);
-//        	elec.setELogsP5(p5Activities);
-//        	elec.setELogsP6(p6Activities);
-//        	elec.setELogsP7(p7Activities);
-//        	elec.setELogsP8(p8Activities);
-//        	elec.setELogsP9(p9Activities);
-//        	elec.setELogsP10(p10Activities);
-//        	elec.setActivities(activities);
+
         	dc.setDefinitionsLoader(tab5_loader);
         	dc.setLogsLoader(tab4_loader);
         	dc.setDtc(dtc);

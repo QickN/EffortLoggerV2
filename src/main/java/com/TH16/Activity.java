@@ -14,14 +14,10 @@ public class Activity {
 	String endTime;
 	String date;
 	int id;
-//	String user;
-//	String userStory;
-//	String[] keyWords;
 	
 	Activity(){	 } //default constructor
 	
 	Activity(String project, String lifeCycleStep, String effortCategory1, String effortCategory2, LocalTime startTime, LocalTime endTime, LocalDate date, int id){
-//			String user, String userStory, String[] keyWords){
 		this.project = project;
 		this.lifeCycleStep = lifeCycleStep;
 		this.effortCategory1 = effortCategory1;
@@ -30,9 +26,6 @@ public class Activity {
 		this.endTime = endTime.toString().substring(0, 8);
 		this.date = date.toString();
 		this.id = id;
-//		this.user = user;
-//		this.userStory = userStory;
-//		this.keyWords = keyWords;
 	}
 	
 	public String getProject() {
@@ -59,15 +52,7 @@ public class Activity {
 	public int getId() {
 		return id;
 	}
-//	public String getUser() {
-//		return user;
-//	}
-//	public String getUserStory() {
-//		return userStory;
-//	}
-//	public String[] getKeyWords() {
-//		return keyWords;
-//	}
+
 	
 	public void setProject(String project) {
 		this.project = project;
@@ -98,13 +83,5 @@ public class Activity {
 	public String toString() {
 		return (getId() + ". " + getDate() + " (" + getStartTime() + "-" + getEndTime() + ") " + getLifeCycleStep() + "; " + getEffortCategory1() + "; " + getEffortCategory2());
 	}
-//	public void setUser(String user) {
-//		this.user = user;
-//	}
-//	public void setUserStory(String userStory) {
-//		this.userStory = userStory;
-//	}
-//	public void setKeyWords(String[] keyWords) {
-//		this.keyWords = keyWords;
-//	}
+
 }

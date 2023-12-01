@@ -325,64 +325,6 @@ public class EffortLogEditorController implements Initializable{
 		planSelectBox.setValue(selectedActivity.effortCategory2);
         
 		
-//		//splits the effort log entry so the data can be autofilled in their respective places
-//		String selectedString = getSelectedItem(effortLogSelectBox);
-//		String[] splitString = selectedString.split(" ");
-//		String stopTime = splitString[2].substring(splitString[2].indexOf("-")+1, splitString[2].length()-1);
-//		String startTime = splitString[2].substring(splitString[2].indexOf("(")+1, splitString[2].indexOf("-"));
-//		String lifeCycleStep = "";
-//		String effortCategory = "";
-//		String plan = "";
-//		
-//		
-//		if(splitString[3].indexOf(";") == splitString[3].length() -1) {
-//			lifeCycleStep = splitString[3].substring(0, splitString[3].length()-1);
-//			effortCategory = splitString[4].substring(0, splitString[4].length()-1);
-//			if(splitString.length == 6) {
-//				plan = splitString[5];
-//			}
-//			else if(splitString.length == 7) {
-//				plan = splitString[5] + " " + splitString[6];
-//			}
-//			else {
-//				plan = splitString[5] + " " + splitString[6] + " " + splitString[7];
-//			}
-//		}
-//		else {
-//			lifeCycleStep = splitString[3] + " " + splitString[4].substring(0, splitString[4].length() -1);
-//			effortCategory = splitString[5].substring(0, splitString[5].length() - 1);
-//			if(splitString.length == 7) {
-//				plan = splitString[6];
-//			}
-//			else if(splitString.length == 8) {
-//				plan = splitString[6] + " " + splitString[7];
-//			}
-//			else {
-//				plan = splitString[6] + " " + splitString[7] + " " + splitString[8];
-//			}
-//		}
-//	
-//		if(effortCategory.equals("Deliverables")) {
-//			planSelectBox.setItems(deliverables);
-//			planLabel.setText("Deliverable");
-//		}
-//		else if(effortCategory.equals("Interruptions")) {
-//			planSelectBox.setItems(interruptions);
-//			planLabel.setText("Interruption");
-//		}
-//		else if(effortCategory.equals("Plans")) {
-//			planSelectBox.setItems(plans);
-//			planLabel.setText("Plan");
-//		}
-//		
-//		//autofills data based on the effort log entry selected
-//		dateTextField.setText(splitString[1]);
-//		startTimeTextField.setText(startTime);
-//		stopTimeTextField.setText(stopTime);
-//		lifeCycleSelectBox.setValue(lifeCycleStep);
-//		effortCategorySelectBox.setValue(effortCategory);
-//		planSelectBox.setValue(plan);	
-		
 		lock = false;
 	}
 	
