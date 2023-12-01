@@ -693,7 +693,7 @@ public class App extends Application {
             tabPane.getSelectionModel().select(tab3); 
         });
         effortLogBtn.setOnAction(event -> {
-            tabPane.getSelectionModel().select(tab3); 
+            tabPane.getSelectionModel().select(tab2); 
         });
         
 
